@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "João da Silva",
+        "CPF": "123.456.789-00",
+        "transportType": "Carro",
+        "retailName": "Loja 1"
+    },
+    {
+        "id": 2,
+        "name": "Maria da Silva",
+        "CPF": "123.456.789-00",
+        "transportType": "Moto",
+        "retailName": "Loja 2"
+    },
+    {
+        "id": 3,
+        "name": "José da Silva",
+        "CPF": "123.456.789-00",
+        "transportType": "Carro",
+        "retailName": "Loja 3"
+    },
+    {
+        "id": 4,
+        "name": "Ana da Silva",
+        "CPF": "123.456.789-00",
+        "transportType": "Moto",
+        "retailName": "Loja 4"
+    },
+    {
+        "id": 5,
+        "name": "Pedro da Silva",
+        "CPF": "123.456.789-00",
+        "transportType": "Carro",
+        "retailName": "Loja 5"
+    }
+]

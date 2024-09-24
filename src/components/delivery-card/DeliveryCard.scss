@@ -1,8 +1,14 @@
 .delivery-card {
-    background-color: green;
+
+
     border: black 1px solid;
     width: 50vw;
     height: 46.5vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
     @media (max-width: 800px) {
         width: 100vw;
