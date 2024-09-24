@@ -1,0 +1,53 @@
+.sidebar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    transition: width 0.3s ease;
+
+    &.collapsed {
+        width: 88px;
+
+        .sidebar-item-content {
+            display: none;
+        }
+    }
+
+    .toggle-btn {
+        width: 100%;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        text-align: left;
+
+        &:hover {
+            background-color: #555;
+        }
+    }
+
+    .sidebar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-top: 20px;
+
+        .sidebar-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            text-align: left;
+
+            &:hover {
+                background-color: #555;
+            }
+
+            .badge {
+                margin-left: 10px;
+                padding: 3px 8px;
+            }
+        }
+    }
+}

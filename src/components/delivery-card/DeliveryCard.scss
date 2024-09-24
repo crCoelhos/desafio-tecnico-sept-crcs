@@ -1,0 +1,11 @@
+.delivery-card {
+    background-color: green;
+    border: black 1px solid;
+    width: 50vw;
+    height: 46.5vh;
+
+    @media (max-width: 800px) {
+        width: 100vw;
+    }
+
+}
