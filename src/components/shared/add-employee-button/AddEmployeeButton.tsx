@@ -1,11 +1,13 @@
 import React from "react";
 
+import "./AddEmployeeButton.scss";
+
 const AddEmployeeButton: React.FC = () => {
   const handleAddEmployee = async () => {
     const newEmployee = {
       id: Date.now(),
-      name: "Jorge Rogerio",
-      CPF: "123.456.789-10",
+      name: "Jorge Teste",
+      CPF: "123.456.789-13",
       transportType: "Carro",
       retailName: "Retail",
     };
@@ -30,7 +32,7 @@ const AddEmployeeButton: React.FC = () => {
     }
   };
 
-  return <button onClick={handleAddEmployee}>Adicionar entregador</button>;
+  return <button onClick={handleAddEmployee} className="addEmployeeButton">Adicionar entregador</button>;
 };
 
 export default AddEmployeeButton;

@@ -2,61 +2,50 @@
     width: 100%;
     margin: 2rem;
     border-collapse: collapse;
-    /* Remove espaços extras entre células */
 }
 
 .deliveryTable th,
 .deliveryTable td {
     padding: 12px;
-    /* Adiciona espaçamento interno nas células */
     border: 1px solid #ddd;
-    /* Adiciona borda fina para melhorar visual */
     text-align: center;
-    /* Centraliza o texto nas colunas */
     vertical-align: middle;
-    /* Centraliza o conteúdo verticalmente */
 }
 
 .tableColumns th {
     background-color: #333;
-    /* Cor de fundo do cabeçalho */
     color: white;
-    /* Cor do texto no cabeçalho */
     font-weight: bold;
 }
 
 .deliveryTable tbody tr:nth-child(even) {
     background-color: #f9f9f9;
-    /* Cor de fundo para linhas pares */
 }
 
 .deliveryTable tbody tr:hover {
     background-color: #f1f1f1;
-    /* Cor de fundo ao passar o mouse */
 }
 
-.removeEmployeeButton,
-.editEmployeeButton {
-    padding: 8px 12px;
-    margin: 0 5px;
-    cursor: pointer;
-    background-color: #731B1B;
+
+#removeEmployeeButton,
+#editEmployeeButton {
     color: white;
     border: none;
-    border-radius: 4px;
     transition: background-color 0.3s ease;
+}
+
+#removeEmployeeButton {
+    background-color: #731B1B;
 
     &:hover {
         background-color: #d32f2f;
-        /* Cor ao passar o mouse no botão de excluir */
     }
 }
 
-.editEmployeeButton {
-    background-color: #1976d2;
+#editEmployeeButton {
+    background: #1976d2;
 
     &:hover {
-        background-color: #2196f3;
-        /* Cor ao passar o mouse no botão de editar */
+        background: #2196f3;
     }
 }

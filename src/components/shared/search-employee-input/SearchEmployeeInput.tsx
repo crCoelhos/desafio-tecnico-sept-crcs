@@ -7,7 +7,11 @@ interface SearchEmployeeInputProps {
   placeholder?: string;
 }
 
-const SearchEmployeeInput: React.FC<SearchEmployeeInputProps> = ({ value, onChange, placeholder }) => {
+const SearchEmployeeInput: React.FC<SearchEmployeeInputProps> = ({
+  value,
+  onChange,
+  placeholder,
+}) => {
   return (
     <div className="search-bar">
       <input

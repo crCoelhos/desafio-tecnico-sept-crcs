@@ -1,0 +1,13 @@
+.addEmployeeButton {
+    margin: 8px;
+    height: 50px;
+
+    background: #1d4fda;
+
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background: #133697;
+    }
+}

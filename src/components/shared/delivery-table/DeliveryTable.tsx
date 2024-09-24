@@ -60,13 +60,13 @@ const DeliveryTable: React.FC<DeliveryTableProps> = ({ deliveries }) => {
               <td>
                 <button
                   onClick={() => console.log(delivery.id)}
-                  className="removeEmployeeButton"
+                  id="removeEmployeeButton"
                 >
                   Excluir
                 </button>
                 <button
                   onClick={() => console.log(delivery.id)}
-                  className="editEmployeeButton"
+                  id="editEmployeeButton"
                 >
                   Editar
                 </button>

@@ -8,9 +8,7 @@ const Navbar: React.FC = () => {
   return (
     <div className="delivery-card">
       <DeliveryTable deliveries={mock} />
-      <div className="addEmployeeButton">
-        <AddEmployeeButton />
-      </div>
+      <AddEmployeeButton />
     </div>
   );
 };
