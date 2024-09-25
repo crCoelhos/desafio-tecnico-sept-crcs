@@ -3,6 +3,7 @@ import { Delivery } from "../../../types/delivery";
 import "./DeliveryTable.scss";
 import Pagination from "../delivery-pagination/DeliveryPagination";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
+import AddEmployeeButton from "../add-employee-button/AddEmployeeButton";
 
 interface DeliveryTableProps {
   deliveries: Delivery[];
@@ -31,12 +32,15 @@ const DeliveryTable: React.FC<DeliveryTableProps> = ({ deliveries }) => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div>
-      <SearchEmployeeInput
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Buscar por nome, CPF, transporte..."
-      />
+    <section>
+      <div id="upperTableSection">
+        <SearchEmployeeInput
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Buscar por nome, CPF, transporte..."
+        />
+        <AddEmployeeButton />
+      </div>
 
       <table className="deliveryTable">
         <thead>
@@ -82,7 +86,7 @@ const DeliveryTable: React.FC<DeliveryTableProps> = ({ deliveries }) => {
         paginate={paginate}
         currentPage={currentPage}
       />
-    </div>
+    </section>
   );
 };
 

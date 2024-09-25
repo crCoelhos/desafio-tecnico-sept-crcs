@@ -1,7 +1,14 @@
 .deliveryTable {
-    width: 100%;
-    margin: 2rem;
+    width: 120%;
+    margin: 0 0 0 1rem;
     border-collapse: collapse;
+}
+
+#upperTableSection {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .deliveryTable th,
