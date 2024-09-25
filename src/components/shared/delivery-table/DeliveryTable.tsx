@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./DeliveryTable.scss";
@@ -9,23 +10,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Delivery } from "@/types/delivery";
-import AddEmployeeButton from "../add-employee-button/AddEmployeeButton";
+import AddEmployeeButton from "../add-employee-button/AddEmployeeSheet";
 import Pagination from "../delivery-pagination/DeliveryPagination";
 import RemoveEmployeeButton from "../remove-employee-button/RemoveEmployeeButton";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
+import EditEmployeeSheet from "../edit-employee-sheet/EditEmployeeSheet";
+import { Employee } from "@/types/employee";
+import AddEmployeeSheet from "../add-employee-button/AddEmployeeSheet";
 
 const DeliveryTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
-  const [deliveries, setDeliveries] = useState<Delivery[]>([]);
+  const [deliveries, setDeliveries] = useState<Employee[]>([]);
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchDeliveries = async () => {
       try {
         const response = await axios.get("http://localhost:5000/deliveries");
-        setDeliveries(response.data as Delivery[]);
+        setDeliveries(response.data as Employee[]);
       } catch (error) {
         console.error("Error fetching deliveries:", error);
       }
@@ -43,7 +49,6 @@ const DeliveryTable: React.FC = () => {
     );
   });
 
-  // const totalPages = Math.ceil(filteredDeliveries.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentDeliveries = filteredDeliveries.slice(
@@ -65,6 +70,14 @@ const DeliveryTable: React.FC = () => {
     );
   };
 
+  const handleUpdateEmployee = (updatedEmployee: Employee) => {
+    setDeliveries((prevDeliveries) =>
+      prevDeliveries.map((delivery) =>
+        delivery.CPF === updatedEmployee.CPF ? updatedEmployee : delivery
+      )
+    );
+    setSelectedEmployee(null);
+  };
   return (
     <div className="cardContent">
       <div id="upperTableSection">
@@ -73,10 +86,10 @@ const DeliveryTable: React.FC = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Buscar por nome, CPF, transporte..."
         />
-        <AddEmployeeButton setDeliveries={setDeliveries} />
+        <AddEmployeeSheet setDeliveries={setDeliveries} />
       </div>
 
-      <Table className="DeliveryTable">
+      <Table className="EmployeeTable">
         <TableHeader>
           <TableRow className="tableColumns">
             <TableHead>ID</TableHead>
@@ -105,12 +118,10 @@ const DeliveryTable: React.FC = () => {
                     deliveryCPF={delivery.CPF}
                     onDelete={handleDelete}
                   />
-                  <button
-                    onClick={() => console.log(delivery.id)}
-                    className="editEmployeeButton"
-                  >
-                    Editar
-                  </button>
+                  <EditEmployeeSheet
+                    employee={delivery}
+                    onUpdate={handleUpdateEmployee}
+                  />
                 </TableCell>
               </TableRow>
             ))
@@ -123,6 +134,7 @@ const DeliveryTable: React.FC = () => {
         totalItems={filteredDeliveries.length}
         paginate={paginate}
         currentPage={currentPage}
+        onPageChange={paginate}
       />
     </div>
   );

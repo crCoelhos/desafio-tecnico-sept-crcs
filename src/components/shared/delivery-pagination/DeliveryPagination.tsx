@@ -1,43 +1,70 @@
-import React from "react";
-import "./DeliveryPagination.scss";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 
-interface PaginationProps {
-  itemsPerPage: number;
-  totalItems: number;
-  paginate: (pageNumber: number) => void;
+interface CustomPaginationProps {
   currentPage: number;
+  totalItems: number;
+  itemsPerPage: number;
+  onPageChange: (page: number) => void;
+
+  paginate: (pageNumber: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
-  itemsPerPage,
-  totalItems,
-  paginate,
+const CustomPagination: React.FC<CustomPaginationProps> = ({
   currentPage,
+  totalItems,
+  itemsPerPage,
+  onPageChange,
 }) => {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   return (
-    <nav className="pagination">
-      <ul className="pagination-list">
-        {pageNumbers.map((number) => (
-          <li key={number} className="pagination-item">
-            <button
-              onClick={() => paginate(number)}
-              className={`pagination-button ${
-                number === currentPage ? "active" : ""
-              }`}
-            >
-              {number}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
+          />
+        </PaginationItem>
+
+        {Array.from({ length: totalPages }, (_, index) => {
+          const pageNumber = index + 1;
+          return (
+            <PaginationItem key={pageNumber}>
+              <PaginationLink
+                onClick={() => onPageChange(pageNumber)}
+                href="#"
+                className={currentPage === pageNumber ? "active" : ""}
+              >
+                {pageNumber}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
+
+        {totalPages > 5 && currentPage < totalPages - 2 && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
+
+        <PaginationItem>
+          <PaginationNext
+            onClick={() =>
+              currentPage < totalPages && onPageChange(currentPage + 1)
+            }
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
 };
 
-export default Pagination;
+export default CustomPagination;

@@ -1,4 +1,4 @@
-export interface Delivery {
+export interface Employee {
   id: number;
   name: string;
   CPF: string;

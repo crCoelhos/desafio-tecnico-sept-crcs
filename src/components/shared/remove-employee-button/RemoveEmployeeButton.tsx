@@ -1,8 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
+
+import "./RemoveEmployeeButton.scss";
+import { TrashIcon } from "lucide-react";
 
 interface RemoveEmployeeButtonProps {
-  deliveryCPF: string; 
+  deliveryCPF: string;
   onDelete: (cpf: string) => void;
 }
 
@@ -23,7 +27,7 @@ const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({
         await axios.delete(
           `http://localhost:5000/deliveries/${deliveryToDelete.id}`
         );
-        onDelete(deliveryCPF); 
+        onDelete(deliveryCPF);
       }
     } catch (error) {
       console.error("Erro ao excluir a entrega:", error);
@@ -31,9 +35,9 @@ const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({
   };
 
   return (
-    <button onClick={handleDelete} className="removeEmployeeButton">
-      Excluir
-    </button>
+    <Button onClick={handleDelete} variant="outline" className="removeButton">
+      <TrashIcon></TrashIcon>Remover
+    </Button>
   );
 };
 
