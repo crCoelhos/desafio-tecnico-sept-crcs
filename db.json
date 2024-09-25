@@ -21,5 +21,27 @@
       "transportType": "bicicleta",
       "retailName": "comercio"
     }
+  ],
+  "services": [
+    {
+      "id": 0,
+      "companyName": "Company 1",
+      "resale": "Resale 1",
+      "attendanceNumber": "123456",
+      "sellerName": "Seller 1",
+      "totalValue": "1000",
+      "quantityItems": "10",
+      "boxCode": "123"
+    },
+    {
+      "id": 3,
+      "companyName": "nome teste",
+      "resale": "revenda teste",
+      "attendanceNumber": 123321,
+      "sellerName": "vendedor",
+      "totalValue": 420,
+      "quantityItems": 420,
+      "boxCode": "31231"
+    }
   ]
 }

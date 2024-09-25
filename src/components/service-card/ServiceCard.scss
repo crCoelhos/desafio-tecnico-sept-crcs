@@ -1,11 +1,3 @@
-.service-card {
-    background-color: purple;
-    border: black 1px solid;
-    width: 50vw;
-    height: 46.5vh;
-
-    @media (max-width: 800px) {
-        width: 100vw;
-    }
-
+#service-card {
+    width: 90%;
 }

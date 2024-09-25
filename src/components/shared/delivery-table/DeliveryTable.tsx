@@ -10,13 +10,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import AddEmployeeButton from "../add-employee-button/AddEmployeeSheet";
+import AddEmployeeButton from "../add-employee-sheet/AddEmployeeSheet";
 import Pagination from "../delivery-pagination/DeliveryPagination";
 import RemoveEmployeeButton from "../remove-employee-button/RemoveEmployeeButton";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import EditEmployeeSheet from "../edit-employee-sheet/EditEmployeeSheet";
 import { Employee } from "@/types/employee";
-import AddEmployeeSheet from "../add-employee-button/AddEmployeeSheet";
+import AddEmployeeSheet from "../add-employee-sheet/AddEmployeeSheet";
 
 const DeliveryTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
