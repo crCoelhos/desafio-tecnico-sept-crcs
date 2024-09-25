@@ -1,0 +1,18 @@
+{
+  "deliveries": [
+    {
+      "id": "1",
+      "name": "João Silva",
+      "CPF": "123.456.789-10",
+      "transportType": "Moto",
+      "retailName": "Loja 1"
+    },
+    {
+      "id": 0,
+      "name": "Teste Teste",
+      "CPF": "123.456.789-13",
+      "transportType": "Carro",
+      "retailName": "Retail"
+    }
+  ]
+}

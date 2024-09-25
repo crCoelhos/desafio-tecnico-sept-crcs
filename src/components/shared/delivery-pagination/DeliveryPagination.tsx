@@ -1,5 +1,5 @@
 import React from "react";
-import "./Pagination.scss";
+import "./DeliveryPagination.scss";
 
 interface PaginationProps {
   itemsPerPage: number;
