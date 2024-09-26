@@ -14,8 +14,6 @@ import Pagination from "../delivery-pagination/DeliveryPagination";
 import { Service } from "@/types/service";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import AddServiceSheet from "../add-service-sheet/AddServiceSheet";
-import EditServiceSheet from "../edit-service-sheet/EditServiceSheet";
-import RemoveServiceButton from "../remove-service-button/RemoveServiceButton";
 import ServiceActionButtons from "../service-action-buttons/ServiceActionButtons";
 
 export const ServiceTable: React.FC = () => {

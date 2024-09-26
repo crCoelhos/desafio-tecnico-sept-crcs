@@ -1,10 +1,11 @@
-#editEmployeeButton {
+.editEmployeeButton {
     background: #BF980D;
-    color: white;
-    border: none;
+    width: 104px;
+
+    font-weight: bold;
 
     &:hover {
-        background: #F4D35E;
-        border: none;
+        color: white;
+        background: #BF980D;
     }
 }

@@ -3,42 +3,36 @@
 @tailwind utilities;
 
 body {
-  background-color: whitesmoke;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
-  line-height: 1.5;
-  color: black;
   font-weight: 600;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  min-height: 100vh;
 }
 
 .main {
   display: flex;
   flex-direction: row;
-  width: 100%;
+
+  @media (max-width: 1023px) {
+    width: 75vw;
+
+  }
 }
 
 .cards-container {
-  width: 30vw;
-
-  gap: 12px;
-  flex-grow: 1;
-  padding: 12px;
+  padding: 8px;
   display: grid;
+  gap: 8px;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
-}
 
-
-@media (min-width: 768px) {
-  .cards-container {
+  @media (min-width: 1023px) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
 }
+
 
 
 @layer base {
@@ -69,6 +63,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -97,11 +92,11 @@ body {
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

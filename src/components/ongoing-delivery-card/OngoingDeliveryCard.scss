@@ -1,11 +1,10 @@
 .ongoing-delivery-card {
-    background-color: red;
-    border: black 1px solid;
-    width: 50vw;
-    height: 46.5vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 8px;
 
-    @media (max-width: 800px) {
-        width: 100vw;
+    
+    @media (max-width: 1023px) {
+        width: 75vw;
     }
 
 }

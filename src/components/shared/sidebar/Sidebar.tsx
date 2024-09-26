@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Sidebar.scss";
+import { ArrowLeftToLine, ArrowRightToLine } from "lucide-react";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,11 @@ const Sidebar = () => {
   return (
     <div className={`sidebar ${isOpen ? "open" : "collapsed"}`}>
       <button className="toggle-btn" onClick={toggleSidebar}>
-        {isOpen ? "Collapse" : "Expand"}
+        {isOpen ? (
+          <ArrowLeftToLine className="colapse-button" />
+        ) : (
+          <ArrowRightToLine className="colapse-button" />
+        )}
       </button>
       <ul className="sidebar-menu">
         <li className="sidebar-item">

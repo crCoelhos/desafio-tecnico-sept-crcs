@@ -14,7 +14,6 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Service } from "@/types/service";
-import { Edit2Icon } from "lucide-react";
 import "./EditServiceSheet.scss";
 
 interface EditServiceSheetProps {
@@ -73,9 +72,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button id="editServiceButton">
-          <Edit2Icon width={"25px"} height={"25px"}></Edit2Icon>Editar
-        </Button>
+        <Button className="editEmployeeButton">Editar</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

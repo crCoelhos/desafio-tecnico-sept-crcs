@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 
-import { TrashIcon, EditIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 
 import EditServiceSheet from "../edit-service-sheet/EditServiceSheet";
 import { Service } from "@/types/service";
@@ -13,7 +13,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@radix-ui/react-dropdown-menu";
+
 import AssignEmployeeToServiceSheet from "../assign-employee-to-service/AssignEmployeeToService";
+
+import "./ServiceActionButtons.scss";
 
 interface ServiceActionButtonsProps {
   serviceId: number;
@@ -38,14 +41,11 @@ const ServiceActionButtons: React.FC<ServiceActionButtonsProps> = ({
   };
 
   return (
-    <div className="actionButtons">
-      <Button onClick={handleDelete} variant="outline" className="removeButton">
-        <TrashIcon /> Remover
-      </Button>
+    <div id="actionButtons">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="editButton">
-            <EditIcon /> Edigar
+            <MenuIcon />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -57,6 +57,15 @@ const ServiceActionButtons: React.FC<ServiceActionButtonsProps> = ({
               service={service}
               onUpdate={onUpdate}
             />
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Button
+              onClick={handleDelete}
+              variant="default"
+              className="removeButton"
+            >
+              Excluir OS
+            </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -12,6 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Employee } from "@/types/employee";
 import { Service } from "@/types/service";
 
+import "./AssignEmployeeToService.scss";
+
 interface AssignEmployeeToServiceSheetProps {
   service: Service;
   onUpdate: (updatedService: Service) => void;
@@ -60,7 +62,9 @@ const AssignEmployeeToServiceSheet: React.FC<
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Designar Entregador</Button>
+        <Button variant={"outline"} className="assignButton">
+          Designar
+        </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

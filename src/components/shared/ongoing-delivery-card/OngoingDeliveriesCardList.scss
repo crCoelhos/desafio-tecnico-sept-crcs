@@ -1,0 +1,30 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    background-color: #fdae38;
+    color: white;
+
+    &:hover {
+        background: #ff7f2a;
+        transition: 200ms ease-in-out;
+        cursor: pointer;
+    }
+}
+
+#card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

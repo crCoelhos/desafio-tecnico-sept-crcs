@@ -1,0 +1,24 @@
+#actionButtons {
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 128px;
+
+}
+
+.editButton {
+    width: 60px
+}
+
+.removeButton {
+    padding: 0;
+    margin: 0;
+    width: 104px;
+
+    font-weight: bold;
+}
