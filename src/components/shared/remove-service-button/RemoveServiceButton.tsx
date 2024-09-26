@@ -1,0 +1,34 @@
+import React from "react";
+import axios from "axios";
+import { Button } from "@/components/ui/button";
+import { TrashIcon } from "lucide-react";
+
+import "./RemoveServiceButton.scss";
+
+interface RemoveServiceButtonProps {
+  serviceId: number;
+  onDelete: (id: number) => void;
+}
+
+const RemoveServiceButton: React.FC<RemoveServiceButtonProps> = ({
+  serviceId,
+  onDelete,
+}) => {
+  const handleDelete = async () => {
+    console.log("id", serviceId);
+    try {
+      await axios.delete(`http://localhost:5000/services/${serviceId}`);
+      onDelete(serviceId);
+    } catch (error) {
+      console.error("Erro ao excluir o serviço:", error);
+    }
+  };
+
+  return (
+    <Button onClick={handleDelete} variant="outline" className="removeButton">
+      <TrashIcon /> Remover
+    </Button>
+  );
+};
+
+export default RemoveServiceButton;

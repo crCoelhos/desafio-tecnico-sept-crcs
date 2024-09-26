@@ -17,7 +17,7 @@ const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({
   const handleDelete = async () => {
     try {
       const response = await axios.get<{ id: string; CPF: string }[]>(
-        "http://localhost:5000/deliveries"
+        "http://localhost:5000/employees"
       );
       const deliveryToDelete = response.data.find(
         (delivery) => delivery.CPF === deliveryCPF
@@ -25,7 +25,7 @@ const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({
 
       if (deliveryToDelete) {
         await axios.delete(
-          `http://localhost:5000/deliveries/${deliveryToDelete.id}`
+          `http://localhost:5000/employees/${deliveryToDelete.id}`
         );
         onDelete(deliveryCPF);
       }

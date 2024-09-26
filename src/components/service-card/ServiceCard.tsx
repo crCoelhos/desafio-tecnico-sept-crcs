@@ -1,6 +1,6 @@
 import React from "react";
 import "./ServiceCard.scss";
-import ServiceTable from "../shared/service-table/ServiceTable";
+import { ServiceTable } from "../shared/service-table/ServiceTable";
 // import mock from "../../mocks/deliveries.json";
 // import AddEmployeeButton from "../shared/add-employee-button/AddEmployeeButton";
 

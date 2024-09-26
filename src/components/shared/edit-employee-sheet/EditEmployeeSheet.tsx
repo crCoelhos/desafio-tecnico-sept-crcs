@@ -49,7 +49,7 @@ const EditEmployeeSheet: React.FC<EditEmployeeSheetProps> = ({
 
     try {
       await axios.put(
-        `http://localhost:5000/deliveries/${employee.id}`,
+        `http://localhost:5000/employees/${employee.id}`,
         updatedEmployee
       );
 

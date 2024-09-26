@@ -30,7 +30,7 @@ const DeliveryTable: React.FC = () => {
   useEffect(() => {
     const fetchDeliveries = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/deliveries");
+        const response = await axios.get("http://localhost:5000/employees");
         setDeliveries(response.data as Employee[]);
       } catch (error) {
         console.error("Error fetching deliveries:", error);

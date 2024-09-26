@@ -14,8 +14,11 @@ import Pagination from "../delivery-pagination/DeliveryPagination";
 import { Service } from "@/types/service";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import AddServiceSheet from "../add-service-sheet/AddServiceSheet";
+import EditServiceSheet from "../edit-service-sheet/EditServiceSheet";
+import RemoveServiceButton from "../remove-service-button/RemoveServiceButton";
+import ServiceActionButtons from "../service-action-buttons/ServiceActionButtons";
 
-const ServiceTable: React.FC = () => {
+export const ServiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
@@ -118,6 +121,7 @@ const ServiceTable: React.FC = () => {
             <TableHead>Total (R$)</TableHead>
             <TableHead>Qnt</TableHead>
             <TableHead>Código</TableHead>
+            <TableHead>Ação</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -136,16 +140,14 @@ const ServiceTable: React.FC = () => {
                 <TableCell>{service.totalValue}</TableCell>
                 <TableCell>{service.quantityItems}</TableCell>
                 <TableCell>{service.boxCode}</TableCell>
-                {/* <TableCell>
-                  <RemoveEmployeeButton
-                    serviceId={service.id} // Corrigir aqui, deveria usar o id
+                <TableCell>
+                  <ServiceActionButtons
+                    serviceId={service.id}
+                    service={service}
                     onDelete={handleDelete}
-                  />
-                  <EditEmployeeSheet
-                    employee={service}
                     onUpdate={handleUpdateEmployee}
                   />
-                </TableCell> */}
+                </TableCell>
               </TableRow>
             ))
           )}
@@ -162,5 +164,3 @@ const ServiceTable: React.FC = () => {
     </div>
   );
 };
-
-export default ServiceTable;

@@ -1,30 +1,23 @@
 {
-  "deliveries": [
+  "employees": [
     {
-      "id": 0,
+      "id": "0",
       "name": "Teste 1",
       "CPF": "123.456.789-13",
       "transportType": "Carro",
       "retailName": "Retail"
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "Teste 2",
       "CPF": "123.456.789-13",
       "transportType": "Carro",
       "retailName": "Retail"
-    },
-    {
-      "id": 2,
-      "name": "testando o add",
-      "CPF": "123123131",
-      "transportType": "bicicleta",
-      "retailName": "comercio"
     }
   ],
   "services": [
     {
-      "id": 0,
+      "id": "0",
       "companyName": "Company 1",
       "resale": "Resale 1",
       "attendanceNumber": "123456",
@@ -32,16 +25,6 @@
       "totalValue": "1000",
       "quantityItems": "10",
       "boxCode": "123"
-    },
-    {
-      "id": 3,
-      "companyName": "nome teste",
-      "resale": "revenda teste",
-      "attendanceNumber": 123321,
-      "sellerName": "vendedor",
-      "totalValue": 420,
-      "quantityItems": 420,
-      "boxCode": "31231"
     }
   ]
 }

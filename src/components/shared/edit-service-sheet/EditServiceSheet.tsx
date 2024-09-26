@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetClose,
@@ -12,81 +11,84 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Service } from "@/types/service";
-import "./AddServiceSheet.scss";
+import { Edit2Icon } from "lucide-react";
+import "./EditServiceSheet.scss";
 
-interface AddServiceSheetProps {
-  setServices: React.Dispatch<React.SetStateAction<Service[]>>;
+interface EditServiceSheetProps {
+  service: Service;
+  onUpdate: (updatedService: Service) => void;
 }
 
-const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
-  const [companyName, setCompanyName] = useState("");
-  const [resale, setResale] = useState("");
-  const [attendanceNumber, setAttendanceNumber] = useState("");
-  const [sellerName, setSellerName] = useState("");
-  const [totalValue, setTotalValue] = useState("");
-  const [quantityItems, setQuantityItems] = useState("");
-  const [boxCode, setBoxCode] = useState("");
+const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
+  service,
+  onUpdate,
+}) => {
+  const [companyName, setCompanyName] = useState(service.companyName);
+  const [resale, setResale] = useState(service.resale);
+  const [attendanceNumber, setAttendanceNumber] = useState(
+    service.attendanceNumber
+  );
+  const [sellerName, setSellerName] = useState(service.sellerName);
+  const [totalValue, setTotalValue] = useState(service.totalValue);
+  const [quantityItems, setQuantityItems] = useState(service.quantityItems);
+  const [boxCode, setBoxCode] = useState(service.boxCode);
 
-  const getNextId = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/employees");
-      const deliveries: Service[] = response.data as Service[];
-      return deliveries.length;
-    } catch (error) {
-      console.error("Error fetching deliveries:", error);
-      return 0;
-    }
-  };
+  useEffect(() => {
+    setCompanyName(service.companyName);
+    setResale(service.resale);
+    setAttendanceNumber(service.attendanceNumber);
+    setSellerName(service.sellerName);
+    setTotalValue(service.totalValue);
+    setQuantityItems(service.quantityItems);
+    setBoxCode(service.boxCode);
+  }, [service]);
 
-  const handleAddService = async () => {
-    const nextId = await getNextId();
-
-    const newService = {
-      id: nextId,
-      companyName: companyName,
-      resale: resale,
-      attendanceNumber: Number(attendanceNumber),
-      sellerName: sellerName,
-      totalValue: Number(totalValue),
-      quantityItems: Number(quantityItems),
-      boxCode: boxCode,
+  const handleUpdate = async () => {
+    const updatedService = {
+      ...service,
+      companyName,
+      resale,
+      attendanceNumber,
+      sellerName,
+      totalValue,
+      quantityItems,
+      boxCode,
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/services",
-        newService
+      await axios.put(
+        `http://localhost:5000/employees/${service.id}`,
+        updatedService
       );
 
-      if (response.status === 201) {
-        setServices((prevServices) => [...prevServices, newService]);
-      }
+      onUpdate(updatedService);
     } catch (error) {
-      console.error("Error adding employee:", error);
+      console.error("Erro ao atualizar o empregado:", error);
     }
   };
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" id="addServiceButton">
-          <PlusIcon /> Criar Serviço
+        <Button id="editServiceButton">
+          <Edit2Icon width={"25px"} height={"25px"}></Edit2Icon>Editar
         </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Criar serviço</SheetTitle>
+          <SheetTitle>Editar Serviço</SheetTitle>
           <SheetDescription>
-            Preencha as informações do novo entregador abaixo.
+            Faça alterações na ordem de serviço aqui. Clique em salvar quando
+            terminar.
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="companyName" className="text-right">
-              Nome da empresa
+              Empresa
             </Label>
             <Input
               id="companyName"
@@ -108,18 +110,18 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="attendanceNumber" className="text-right">
-              Numero do atendimento
+              Número do Atendimento{" "}
             </Label>
             <Input
               id="attendanceNumber"
               value={attendanceNumber}
-              onChange={(e) => setAttendanceNumber(e.target.value)}
+              onChange={(e) => setAttendanceNumber(Number(e.target.value))}
               className="col-span-3"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="sellerName" className="text-right">
-              Nome do vendedor
+              Vendedor
             </Label>
             <Input
               id="sellerName"
@@ -130,12 +132,12 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="totalValue" className="text-right">
-              Valor total
+              Total (R$)
             </Label>
             <Input
               id="totalValue"
               value={totalValue}
-              onChange={(e) => setTotalValue(e.target.value)}
+              onChange={(e) => setTotalValue(Number(e.target.value))}
               className="col-span-3"
             />
           </div>
@@ -146,7 +148,7 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
             <Input
               id="quantityItems"
               value={quantityItems}
-              onChange={(e) => setQuantityItems(e.target.value)}
+              onChange={(e) => setQuantityItems(Number(e.target.value))}
               className="col-span-3"
             />
           </div>
@@ -164,7 +166,9 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
         </div>
         <SheetFooter>
           <SheetClose asChild>
-            <Button onClick={handleAddService}>Salvar</Button>
+            <Button type="button" onClick={handleUpdate}>
+              Salvar alterações
+            </Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>
@@ -172,4 +176,4 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
   );
 };
 
-export default AddServiceSheet;
+export default EditServiceSheet;

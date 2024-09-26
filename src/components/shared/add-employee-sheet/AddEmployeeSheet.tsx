@@ -31,7 +31,7 @@ const AddEmployeeSheet: React.FC<AddEmployeeSheetProps> = ({
 
   const getNextId = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/deliveries");
+      const response = await axios.get("http://localhost:5000/employees");
       const deliveries: Employee[] = response.data as Employee[];
       return deliveries.length;
     } catch (error) {
@@ -53,7 +53,7 @@ const AddEmployeeSheet: React.FC<AddEmployeeSheetProps> = ({
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/deliveries",
+        "http://localhost:5000/employees",
         newEmployee
       );
 
