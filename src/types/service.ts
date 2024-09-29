@@ -1,7 +1,7 @@
 import { Employee } from "./employee";
 
 export interface Service {
-  id: number;
+  id: string;
   companyName: string;
   resale: string;
   attendanceNumber?: number;

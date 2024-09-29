@@ -65,7 +65,10 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
       );
 
       if (response.status === 201) {
-        setServices((prevServices: Service[]) => [...prevServices, newService]);
+        setServices((prevServices: Service[]) => [
+          ...prevServices,
+          newService as Service,
+        ]);
       }
     } catch (error) {
       console.error("Error adding employee:", error);

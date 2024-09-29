@@ -59,13 +59,13 @@ const OngoingDeliveriesCardList: React.FC = () => {
   const handleCompleteDelivery = async (deliveryId: number) => {
     try {
       const updatedServices = globalServices.map((service) =>
-        service.id === deliveryId
+        Number(service.id) === deliveryId
           ? { ...service, finishedAt: new Date(), status: "Concluído" as const }
           : service
       );
 
       const updatedDelivery = updatedServices.find(
-        (service) => service.id === deliveryId
+        (service) => Number(service.id) === deliveryId
       );
       if (updatedDelivery) {
         await axios.put(
@@ -123,7 +123,7 @@ const OngoingDeliveriesCardList: React.FC = () => {
           </CardContent>
           <CardFooter className={style.cardFooter}>
             <Button
-              onClick={() => handleCompleteDelivery(delivery.id)}
+              onClick={() => handleCompleteDelivery(Number(delivery.id))}
               variant="destructive"
               className={style.finishDelivery}
             >
