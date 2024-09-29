@@ -46,7 +46,7 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
     const nextId = await getNextId();
 
     const newService = {
-      id: nextId,
+      id: nextId.toString(),
       companyName: companyName,
       resale: resale,
       attendanceNumber: Number(attendanceNumber),

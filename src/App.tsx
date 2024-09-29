@@ -14,10 +14,10 @@ function App() {
           <Sidebar />
         </div>
         <div className="cards-container">
-          <DeliveryCard />
-          <ServiceCard />
-          <FinishedDeliveryCard />
           <OngoingDeliveryCard />
+          <ServiceCard />
+          <DeliveryCard />
+          <FinishedDeliveryCard />
         </div>
       </main>
     </DeliveryProvider>

@@ -1,0 +1,48 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+.card {
+    // background: #c0a74b;
+    // color: white;
+
+    &:hover {
+        // background: #F4D35E;
+        transition: 200ms ease-in-out;
+        cursor: pointer;
+    }
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.cardMainContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardSecondaryContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

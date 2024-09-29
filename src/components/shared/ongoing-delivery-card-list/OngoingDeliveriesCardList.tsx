@@ -11,9 +11,12 @@ import axios from "axios";
 import { Service } from "@/types/service";
 import { BikeIcon, CarIcon } from "lucide-react";
 
-import "./OngoingDeliveriesCardList.scss";
+import style from "./OngoingDeliveriesCardList.module.scss";
 import { Employee } from "@/types/employee";
 import { useDeliveryContext } from "@/context/DeliveryContext";
+import TimeCounter from "../time-counter/TimeCounter";
+
+// #TODO: timer on the card to show how long the delivery has been ongoing
 
 const OngoingDeliveriesCardList: React.FC = () => {
   const {
@@ -57,7 +60,7 @@ const OngoingDeliveriesCardList: React.FC = () => {
     try {
       const updatedServices = globalServices.map((service) =>
         service.id === deliveryId
-          ? { ...service, status: "Concluído" as const }
+          ? { ...service, finishedAt: new Date(), status: "Concluído" as const }
           : service
       );
 
@@ -87,24 +90,42 @@ const OngoingDeliveriesCardList: React.FC = () => {
   };
 
   return (
-    <div className="grid-container">
+    <div className={style.gridContainer}>
       {ongoingDeliveries.map((delivery) => (
-        <Card key={delivery.id} className="card">
+        <Card key={delivery.id} className={style.card}>
           <CardHeader>
             <CardTitle>Atendimento #{delivery.attendanceNumber}</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p>
-              Entregador:
-              {getEmployeeName(delivery.employeeId)}
-            </p>
-            <p>Endereço: {delivery.address}</p>
+          <CardContent className={style.cardContent}>
+            <div className={style.cardMainContent}>
+              <p>
+                Entregador:
+                {getEmployeeName(delivery.employeeId)}
+              </p>
+              <p>Endereço: {delivery.address}</p>
+            </div>
+            <div className={style.cardSecondaryContent}>
+              <p>
+                Início:{" "}
+                {delivery.startedAt &&
+                  new Date(delivery.startedAt).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+              </p>
+              <p>
+                Decorrido:{" "}
+                {delivery.startedAt && (
+                  <TimeCounter startTime={new Date(delivery.startedAt)} />
+                )}
+              </p>
+            </div>
           </CardContent>
-          <CardFooter id="card-footer">
+          <CardFooter className={style.cardFooter}>
             <Button
               onClick={() => handleCompleteDelivery(delivery.id)}
               variant="destructive"
-              id="finish-delivery"
+              className={style.finishDelivery}
             >
               Finalizar Entrega
             </Button>

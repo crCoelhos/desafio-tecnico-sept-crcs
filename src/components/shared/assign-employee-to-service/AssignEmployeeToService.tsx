@@ -13,12 +13,6 @@ import { Employee } from "@/types/employee";
 import { Service } from "@/types/service";
 
 import style from "./AssignEmployeeToService.module.scss";
-// import {
-//   Select,
-//   SelectTrigger,
-//   SelectContent,
-//   SelectItem,
-// } from "@/components/ui/select";
 
 interface AssignEmployeeToServiceSheetProps {
   service: Service;
@@ -53,6 +47,7 @@ const AssignEmployeeToServiceSheet: React.FC<
       ...service,
       employeeId: selectedEmployeeId,
       status: "Em Andamento",
+      startedAt: new Date().toISOString(),
     };
 
     try {
@@ -60,7 +55,7 @@ const AssignEmployeeToServiceSheet: React.FC<
         `Assigning employee ${selectedEmployeeId} to service ${service.id}...`
       );
       const response = await axios.put(
-        `http://localhost:5000/services/${Number(service.id)}`,
+        `http://localhost:5000/services/${service.id}`,
         updatedService
       );
 

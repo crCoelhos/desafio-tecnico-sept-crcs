@@ -18,4 +18,7 @@ export interface Service {
     | "Concluído"
     | "Cancelado"
     | "Arquivado";
+  startedAt?: Date;
+  finishedAt?: Date;
+  canceledAt?: Date;
 }

@@ -55,8 +55,10 @@
       "boxCode": "5764",
       "address": "Avenida 456, Bairro Industrial",
       "obs": "Observação 1",
-      "status": "Em Andamento",
-      "employeeId": 1
+      "status": "Concluído",
+      "employeeId": 1,
+      "startedAt": null,
+      "finishedAt": null
     },
     {
       "id": "1",
@@ -70,7 +72,9 @@
       "obs": "Observação 2",
       "status": "Concluído",
       "employeeId": 2,
-      "address": "Avenida 456, Bairro Industrial"
+      "address": "Avenida 456, Bairro Industrial",
+      "startedAt": null,
+      "finishedAt": null
     },
     {
       "id": "2",
@@ -82,9 +86,11 @@
       "quantityItems": "15",
       "boxCode": "789",
       "obs": "Observação 3",
-      "status": "Concluído",
+      "status": "Arquivado",
       "employeeId": 2,
-      "address": "Travessa 789, Bairro Jardim"
+      "address": "Travessa 789, Bairro Jardim",
+      "startedAt": null,
+      "finishedAt": null
     },
     {
       "id": "3",
@@ -96,9 +102,11 @@
       "quantityItems": "20",
       "boxCode": "101",
       "obs": "Observação 4",
-      "status": "Concluído",
+      "status": "Arquivado",
       "employeeId": 5,
-      "address": "Rua das Flores, Bairro Centro"
+      "address": "Rua das Flores, Bairro Centro",
+      "startedAt": null,
+      "finishedAt": null
     },
     {
       "id": "4",
@@ -109,9 +117,11 @@
       "totalValue": 320,
       "quantityItems": 32,
       "boxCode": "6546",
-      "status": "Em Andamento",
+      "status": "Arquivado",
       "employeeId": 5,
-      "address": "Rua das Flores, Bairro Centro"
+      "address": "Rua das Flores, Bairro Centro",
+      "startedAt": null,
+      "finishedAt": null
     },
     {
       "id": "5",
@@ -122,9 +132,55 @@
       "totalValue": 123,
       "quantityItems": 123,
       "boxCode": "123",
-      "status": "Em Andamento",
+      "status": "Concluído",
       "address": "Teste 1",
-      "employeeId": 1
+      "employeeId": 1,
+      "startedAt": null,
+      "finishedAt": null
+    },
+    {
+      "id": "6",
+      "companyName": "teste tempo",
+      "resale": "teste tempo",
+      "attendanceNumber": 321,
+      "sellerName": "tempo",
+      "totalValue": 40,
+      "quantityItems": 2,
+      "boxCode": 42,
+      "status": "Concluído",
+      "address": "endereço tempo",
+      "employeeId": 5,
+      "startedAt": "2024-09-29T22:59:48.280Z",
+      "finishedAt": "2024-09-29T23:01:51.976Z"
+    },
+    {
+      "id": "7",
+      "companyName": "nome teste",
+      "resale": "revenda teste",
+      "attendanceNumber": 123,
+      "sellerName": "vendedor teste",
+      "totalValue": 123,
+      "quantityItems": 32,
+      "boxCode": 1231231,
+      "status": "Aguardando",
+      "address": "endereço teste",
+      "startedAt": null,
+      "finishedAt": null
+    },
+    {
+      "id": "8",
+      "companyName": "teste tempo",
+      "resale": "teste tempo",
+      "attendanceNumber": 321,
+      "sellerName": "tempo",
+      "totalValue": 40,
+      "quantityItems": 2,
+      "boxCode": 42,
+      "status": "Concluído",
+      "address": "endereço tempo",
+      "employeeId": 1,
+      "startedAt": "2024-09-29T23:01:42.688Z",
+      "finishedAt": "2024-09-29T23:14:07.839Z"
     }
   ]
 }
