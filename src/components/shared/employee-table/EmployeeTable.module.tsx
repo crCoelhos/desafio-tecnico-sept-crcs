@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import AddEmployeeButton from "../add-employee-sheet/AddEmployeeSheet";
 import Pagination from "../pagination/Pagination";
 import RemoveEmployeeButton from "../remove-employee-button/RemoveEmployeeButton";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
@@ -17,13 +16,13 @@ import EditEmployeeSheet from "../edit-employee-sheet/EditEmployeeSheet";
 import { Employee } from "@/types/employee";
 import AddEmployeeSheet from "../add-employee-sheet/AddEmployeeSheet";
 
-import style from "./DeliveryTable.module.scss";
+import style from "./EmployeeTable.module.scss";
 
-const DeliveryTable: React.FC = () => {
+const EmployeeCardTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
-  const [deliveries, setDeliveries] = useState<Employee[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
     null
   );
@@ -32,26 +31,26 @@ const DeliveryTable: React.FC = () => {
     const fetchDeliveries = async () => {
       try {
         const response = await axios.get("http://localhost:5000/employees");
-        setDeliveries(response.data as Employee[]);
+        setEmployees(response.data as Employee[]);
       } catch (error) {
-        console.error("Error fetching deliveries:", error);
+        console.error("Error fetching employees:", error);
       }
     };
 
     fetchDeliveries();
   }, []);
 
-  const filteredDeliveries = deliveries.filter((delivery) => {
+  const filteredDeliveries = employees.filter((employee) => {
     return (
-      (delivery.name &&
-        delivery.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (delivery.CPF && delivery.CPF.includes(searchTerm)) ||
-      (delivery.transportType &&
-        delivery.transportType
+      (employee.name &&
+        employee.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (employee.CPF && employee.CPF.includes(searchTerm)) ||
+      (employee.transportType &&
+        employee.transportType
           .toLowerCase()
           .includes(searchTerm.toLowerCase())) ||
-      (delivery.retailName &&
-        delivery.retailName.toLowerCase().includes(searchTerm.toLowerCase()))
+      (employee.retailName &&
+        employee.retailName.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -68,31 +67,31 @@ const DeliveryTable: React.FC = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, deliveries]);
+  }, [searchTerm, employees]);
 
   const handleDelete = (cpf: string) => {
-    setDeliveries((prevDeliveries) =>
-      prevDeliveries.filter((delivery) => delivery.CPF !== cpf)
+    setEmployees((prevEmployees) =>
+      prevEmployees.filter((employee) => employee.CPF !== cpf)
     );
   };
 
   const handleUpdateEmployee = (updatedEmployee: Employee) => {
-    setDeliveries((prevDeliveries) =>
-      prevDeliveries.map((delivery) =>
-        delivery.CPF === updatedEmployee.CPF ? updatedEmployee : delivery
+    setEmployees((prevEmployees) =>
+      prevEmployees.map((employee) =>
+        employee.CPF === updatedEmployee.CPF ? updatedEmployee : employee
       )
     );
     setSelectedEmployee(null);
   };
   return (
     <div className={style.cardContent}>
-      <div id="upperTableSection">
+      <div className={style.upperTableSection}>
+        <AddEmployeeSheet setDeliveries={setEmployees} />
         <SearchEmployeeInput
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Buscar por nome, CPF, transporte..."
         />
-        <AddEmployeeSheet setDeliveries={setDeliveries} />
       </div>
 
       <Table className={style.employeeTable}>
@@ -109,7 +108,7 @@ const DeliveryTable: React.FC = () => {
         <TableBody>
           {currentDeliveries.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={6}>Nenhuma entrega encontrada.</TableCell>
+              <TableCell colSpan={6}>Nenhum entregador encontrado.</TableCell>
             </TableRow>
           ) : (
             currentDeliveries.map((delivery) => (
@@ -146,4 +145,4 @@ const DeliveryTable: React.FC = () => {
   );
 };
 
-export default DeliveryTable;
+export default EmployeeCardTable;

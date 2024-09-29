@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ServiceTable.scss";
 import {
   Table,
   TableBody,
@@ -16,6 +15,7 @@ import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import AddServiceSheet from "../add-service-sheet/AddServiceSheet";
 import EditServiceSheet from "../edit-service-sheet/EditServiceSheet";
 import AssignEmployeeToServiceSheet from "../assign-employee-to-service/AssignEmployeeToService";
+import style from "./ServiceTable.module.scss";
 
 export const ServiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -105,19 +105,20 @@ export const ServiceTable: React.FC = () => {
   };
 
   return (
-    <div className="cardContent">
-      <div id="upperTableSection">
+    <div className={style.cardContent}>
+      <div className={style.upperTableSection}>
+        <AddServiceSheet setServices={setServices} />
+
         <SearchEmployeeInput
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Buscar Empresa, Revenda, Código..."
         />
-        <AddServiceSheet setServices={setServices} />
       </div>
 
-      <Table className="ServiceTable">
+      <Table className={style.ServiceTable}>
         <TableHeader>
-          <TableRow className="tableColumns">
+          <TableRow className={style.tableColumns}>
             <TableHead>ID</TableHead>
             <TableHead>Empresa</TableHead>
             <TableHead>Revenda</TableHead>

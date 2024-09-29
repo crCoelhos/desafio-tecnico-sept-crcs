@@ -1,6 +1,6 @@
 
 import "./App.scss";
-import DeliveryCard from "./components/delivery-card/DeliveryCard";
+import DeliveryCard from "./components/employee-card/EmployeeCard";
 import FinishedDeliveryCard from "./components/finished-delivery-card/FinishedDeliveryCard";
 import OngoingDeliveryCard from "./components/ongoing-delivery-card/OngoingDeliveryCard";
 import ServiceCard from "./components/service-card/ServiceCard";

@@ -1,11 +1,11 @@
 import React from "react";
-import DeliveryTable from "../shared/delivery-table/DeliveryTable";
-import style from "./DeliveryCard.module.scss";
+import EmployeeCardTable from "../shared/employee-table/EmployeeTable.module";
+import style from "./EmployeeCard.module.scss";
 
 const DeliveryCard: React.FC = () => {
   return (
     <div className={style.deliveryCard}>
-      <DeliveryTable />
+      <EmployeeCardTable />
     </div>
   );
 };
