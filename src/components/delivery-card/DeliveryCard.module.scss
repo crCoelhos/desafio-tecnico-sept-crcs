@@ -1,8 +1,8 @@
-#delivery-card {
+.deliveryCard {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 8px;
 
-    
+
     @media (max-width: 1023px) {
         width: 75vw;
     }

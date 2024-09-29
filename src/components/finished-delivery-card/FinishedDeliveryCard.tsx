@@ -1,10 +1,10 @@
 import React from "react";
-import "./FinishedDeliveryCard.scss";
+import style from "./FinishedDeliveryCard.module.scss";
 import FinishedDeliveriesCardList from "../shared/finished-delivery-card-list/FinishedDeliveriesCardList";
 
 const FinishedDeliveryCard: React.FC = () => {
   return (
-    <div className="finished-delivery-card">
+    <div className={style.finishedDeliveryCard}>
       <FinishedDeliveriesCardList />
     </div>
   );

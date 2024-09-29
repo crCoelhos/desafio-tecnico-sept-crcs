@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import "./AddEmployeeButton.scss";
+import style from "./AddEmployeeButton.module.scss";
 
 interface AddEmployeeSheetProps {
   setDeliveries: React.Dispatch<React.SetStateAction<Employee[]>>;
@@ -68,7 +68,7 @@ const AddEmployeeSheet: React.FC<AddEmployeeSheetProps> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" id="addEmployeeButton">
+        <Button variant="outline" className={style.addEmployeeButton}>
           <PlusIcon /> Adicionar entregador
         </Button>
       </SheetTrigger>

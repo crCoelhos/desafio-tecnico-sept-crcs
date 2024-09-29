@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./DeliveryTable.scss";
 import {
   Table,
   TableBody,
@@ -17,6 +16,8 @@ import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import EditEmployeeSheet from "../edit-employee-sheet/EditEmployeeSheet";
 import { Employee } from "@/types/employee";
 import AddEmployeeSheet from "../add-employee-sheet/AddEmployeeSheet";
+
+import style from "./DeliveryTable.module.scss";
 
 const DeliveryTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -79,7 +80,7 @@ const DeliveryTable: React.FC = () => {
     setSelectedEmployee(null);
   };
   return (
-    <div className="cardContent">
+    <div className={style.cardContent}>
       <div id="upperTableSection">
         <SearchEmployeeInput
           value={searchTerm}
@@ -89,9 +90,9 @@ const DeliveryTable: React.FC = () => {
         <AddEmployeeSheet setDeliveries={setDeliveries} />
       </div>
 
-      <Table className="EmployeeTable">
+      <Table className={style.employeeTable}>
         <TableHeader>
-          <TableRow className="tableColumns">
+          <TableRow className={style.tableColumns}>
             <TableHead>ID</TableHead>
             <TableHead>Nome</TableHead>
             <TableHead>CPF</TableHead>

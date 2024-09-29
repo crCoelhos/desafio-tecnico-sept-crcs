@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Service } from "@/types/service";
-import "./EditServiceSheet.scss";
+import style from "./EditServiceSheet.module.scss";
 
 interface EditServiceSheetProps {
   service: Service;
@@ -72,7 +72,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="editEmployeeButton">Editar</Button>
+        <Button className={style.editEmployeeButton}>Editar</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

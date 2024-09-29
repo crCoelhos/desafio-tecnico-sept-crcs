@@ -1,12 +1,10 @@
 import React from "react";
-import "./DeliveryCard.scss";
 import DeliveryTable from "../shared/delivery-table/DeliveryTable";
-// import mock from "../../mocks/deliveries.json";
-// import AddEmployeeButton from "../shared/add-employee-button/AddEmployeeButton";
+import style from "./DeliveryCard.module.scss";
 
 const DeliveryCard: React.FC = () => {
   return (
-    <div id="delivery-card">
+    <div className={style.deliveryCard}>
       <DeliveryTable />
     </div>
   );

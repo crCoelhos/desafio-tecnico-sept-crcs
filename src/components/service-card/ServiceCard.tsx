@@ -1,12 +1,10 @@
 import React from "react";
-import "./ServiceCard.scss";
+import style from "./ServiceCard.module.scss";
 import { ServiceTable } from "../shared/service-table/ServiceTable";
-// import mock from "../../mocks/deliveries.json";
-// import AddEmployeeButton from "../shared/add-employee-button/AddEmployeeButton";
 
 const ServiceCard: React.FC = () => {
   return (
-    <div id="service-card">
+    <div className={style.serviceCard}>
       <ServiceTable />
     </div>
   );

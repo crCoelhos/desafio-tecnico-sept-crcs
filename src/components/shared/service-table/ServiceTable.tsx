@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ServiceTable.scss";
@@ -21,7 +20,7 @@ export const ServiceTable: React.FC = () => {
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
   const [services, setServices] = useState<Service[]>([]);
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  // const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {
     const fetchDeliveries = async () => {
@@ -88,13 +87,29 @@ export const ServiceTable: React.FC = () => {
     );
   };
 
-  const handleUpdateEmployee = (updatedEmployee: Service) => {
-    setServices((prevServices) =>
-      prevServices.map((service) =>
-        service.id === updatedEmployee.id ? updatedEmployee : service
-      )
-    );
-    setSelectedService(null);
+  const handleUpdateService = async (updatedService: Service) => {
+    try {
+      const updatedServices = services.map((service) =>
+        service.id === updatedService.id
+          ? { ...service, ...updatedService }
+          : service
+      );
+
+      const serviceToUpdate = updatedServices.find(
+        (service) => service.id === updatedService.id
+      );
+
+      if (serviceToUpdate) {
+        await axios.put(
+          `http://localhost:5000/services/${updatedService.id}`,
+          serviceToUpdate
+        );
+
+        setServices(updatedServices);
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar o serviço:", error);
+    }
   };
 
   return (
@@ -143,7 +158,7 @@ export const ServiceTable: React.FC = () => {
                     serviceId={service.id}
                     service={service}
                     onDelete={handleDelete}
-                    onUpdate={handleUpdateEmployee}
+                    onUpdate={handleUpdateService}
                   />
                 </TableCell>
               </TableRow>
