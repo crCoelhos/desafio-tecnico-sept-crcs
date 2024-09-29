@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -13,44 +13,49 @@ import { BikeIcon, CarIcon } from "lucide-react";
 
 import "./OngoingDeliveriesCardList.scss";
 import { Employee } from "@/types/employee";
+import { useDeliveryContext } from "@/context/DeliveryContext";
 
 const OngoingDeliveriesCardList: React.FC = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  const [employees, setEmployees] = useState<Employee[]>([]);
+  const {
+    globalServices,
+    setGlobalServices,
+    globalEmployees,
+    setGlobalEmployees,
+  } = useDeliveryContext();
+
+  const ongoingDeliveries = globalServices.filter(
+    (service) => service.status === "Em Andamento"
+  );
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
         const response = await axios.get("http://localhost:5000/services");
-        setServices(response.data as Service[]);
+        setGlobalServices(response.data as Service[]);
       } catch (error) {
         console.error("Error fetching services:", error);
       }
     };
 
     fetchServices();
-  }, []);
+  }, [setGlobalServices]);
 
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
         const response = await axios.get("http://localhost:5000/employees");
-        setEmployees(response.data as Employee[]);
+        setGlobalEmployees(response.data as Employee[]);
       } catch (error) {
         console.error("Error fetching employees:", error);
       }
     };
 
     fetchEmployees();
-  }, []);
-
-  const ongoingDeliveries = services.filter(
-    (service) => service.status === "Em Andamento"
-  );
+  }, [setGlobalEmployees]);
 
   const handleCompleteDelivery = async (deliveryId: number) => {
     try {
-      const updatedServices = services.map((service) =>
+      const updatedServices = globalServices.map((service) =>
         service.id === deliveryId
           ? { ...service, status: "Concluído" as const }
           : service
@@ -64,7 +69,7 @@ const OngoingDeliveriesCardList: React.FC = () => {
           `http://localhost:5000/services/${deliveryId}`,
           updatedDelivery
         );
-        setServices(updatedServices);
+        setGlobalServices(updatedServices);
       }
     } catch (error) {
       console.error("Error completing delivery:", error);
@@ -72,12 +77,12 @@ const OngoingDeliveriesCardList: React.FC = () => {
   };
 
   const getEmployeeName = (employeeId: number | undefined) => {
-    const employee = employees.find((emp) => emp.id == employeeId);
+    const employee = globalEmployees.find((emp) => emp.id == employeeId);
     return employee ? employee.name : "Entregador não designado";
   };
 
   const getTransportType = (employeeId: number | undefined) => {
-    const employee = employees.find((emp) => emp.id == employeeId);
+    const employee = globalEmployees.find((emp) => emp.id == employeeId);
     return employee ? employee.transportType : null;
   };
 
