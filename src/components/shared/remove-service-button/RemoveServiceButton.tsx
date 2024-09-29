@@ -15,7 +15,6 @@ const RemoveServiceButton: React.FC<RemoveServiceButtonProps> = ({
   onDelete,
 }) => {
   const handleDelete = async () => {
-    console.log("id", serviceId);
     try {
       await axios.delete(`http://localhost:5000/services/${serviceId}`);
       onDelete(serviceId);

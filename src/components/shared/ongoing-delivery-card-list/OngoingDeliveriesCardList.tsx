@@ -12,9 +12,11 @@ import { Service } from "@/types/service";
 import { BikeIcon, CarIcon } from "lucide-react";
 
 import "./OngoingDeliveriesCardList.scss";
+import { Employee } from "@/types/employee";
 
 const OngoingDeliveriesCardList: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -27,6 +29,19 @@ const OngoingDeliveriesCardList: React.FC = () => {
     };
 
     fetchServices();
+  }, []);
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/employees");
+        setEmployees(response.data as Employee[]);
+      } catch (error) {
+        console.error("Error fetching employees:", error);
+      }
+    };
+
+    fetchEmployees();
   }, []);
 
   const ongoingDeliveries = services.filter(
@@ -56,6 +71,16 @@ const OngoingDeliveriesCardList: React.FC = () => {
     }
   };
 
+  const getEmployeeName = (employeeId: number | undefined) => {
+    const employee = employees.find((emp) => emp.id == employeeId);
+    return employee ? employee.name : "Entregador não designado";
+  };
+
+  const getTransportType = (employeeId: number | undefined) => {
+    const employee = employees.find((emp) => emp.id == employeeId);
+    return employee ? employee.transportType : null;
+  };
+
   return (
     <div className="grid-container">
       {ongoingDeliveries.map((delivery) => (
@@ -65,11 +90,10 @@ const OngoingDeliveriesCardList: React.FC = () => {
           </CardHeader>
           <CardContent>
             <p>
-              <strong>Entregador:</strong> {delivery.deliveryPerson?.name}
+              Entregador:
+              {getEmployeeName(delivery.employeeId)}
             </p>
-            <p>
-              <strong>Endereço:</strong> {delivery.address}
-            </p>
+            <p>Endereço: {delivery.address}</p>
           </CardContent>
           <CardFooter id="card-footer">
             <Button
@@ -79,11 +103,12 @@ const OngoingDeliveriesCardList: React.FC = () => {
             >
               Finalizar Entrega
             </Button>
-            {delivery.deliveryPerson?.transportType === "Carro" ? (
-              <CarIcon />
-            ) : (
-              <BikeIcon />
-            )}
+            {delivery.employeeId &&
+              (getTransportType(delivery.employeeId) === "Carro" ? (
+                <CarIcon />
+              ) : (
+                <BikeIcon />
+              ))}
           </CardFooter>
         </Card>
       ))}

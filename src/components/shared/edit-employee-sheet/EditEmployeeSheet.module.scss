@@ -1,4 +1,4 @@
-#editEmployeeButton {
+.editEmployeeButton {
     background: #BF980D;
     color: white;
     border: none;
@@ -7,4 +7,9 @@
         background: #F4D35E;
         border: none;
     }
+}
+
+.editButton {
+    width: 25px;
+    height: 25px;
 }

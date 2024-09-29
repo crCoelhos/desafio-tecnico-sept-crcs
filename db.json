@@ -1,13 +1,6 @@
 {
   "employees": [
     {
-      "id": "0",
-      "name": "Rogério",
-      "CPF": "123.456.789-13",
-      "transportType": "Carro",
-      "retailName": "Retailer"
-    },
-    {
       "id": "1",
       "name": "Leticia",
       "CPF": "321123",
@@ -23,28 +16,28 @@
     },
     {
       "id": "3",
-      "name": "Sérgio",
+      "name": "Rogério",
       "CPF": "321123",
       "transportType": "Carro",
       "retailName": "Comercio"
     },
     {
       "id": "4",
-      "name": "Sérgio",
+      "name": "Samantha",
       "CPF": "321123",
       "transportType": "Carro",
       "retailName": "Comercio"
     },
     {
       "id": "5",
-      "name": "Sérgio",
+      "name": "Verde",
       "CPF": "321123",
       "transportType": "Carro",
       "retailName": "Comercio"
     },
     {
       "id": "6",
-      "name": "Sérgio",
+      "name": "Vermelho",
       "CPF": "321123",
       "transportType": "Carro",
       "retailName": "Comercio"
@@ -55,14 +48,15 @@
       "id": "0",
       "companyName": "Comercio 1",
       "resale": "Resale 1",
-      "attendanceNumber": "123456",
+      "attendanceNumber": 654,
       "sellerName": "Seller 1",
       "totalValue": "1000",
       "quantityItems": "10",
-      "boxCode": "123",
+      "boxCode": "5764",
       "address": "Avenida 456, Bairro Industrial",
       "obs": "Observação 1",
-      "status": "Pendente"
+      "status": "Em Andamento",
+      "employeeId": 1
     },
     {
       "id": "1",
@@ -74,12 +68,8 @@
       "quantityItems": "5",
       "boxCode": "456",
       "obs": "Observação 2",
-      "status": "Em Andamento",
-      "deliveryPerson": {
-        "id": "0",
-        "name": "Rogério",
-        "transportType": "Carro"
-      },
+      "status": "Concluído",
+      "employeeId": 2,
       "address": "Avenida 456, Bairro Industrial"
     },
     {
@@ -93,11 +83,7 @@
       "boxCode": "789",
       "obs": "Observação 3",
       "status": "Concluído",
-      "deliveryPerson": {
-        "id": "0",
-        "name": "Teste 2",
-        "transportType": "Carro"
-      },
+      "employeeId": 2,
       "address": "Travessa 789, Bairro Jardim"
     },
     {
@@ -110,49 +96,35 @@
       "quantityItems": "20",
       "boxCode": "101",
       "obs": "Observação 4",
-      "status": "Em Andamento",
-      "deliveryPerson": {
-        "id": "1",
-        "name": "Leticia",
-        "transportType": "Motocicleta"
-      },
+      "status": "Concluído",
+      "employeeId": 5,
       "address": "Rua das Flores, Bairro Centro"
     },
     {
       "id": "4",
-      "companyName": "Company 5",
-      "resale": "Resale 5",
-      "attendanceNumber": "890123",
-      "sellerName": "Seller 5",
-      "totalValue": "250",
-      "quantityItems": "5",
-      "boxCode": "122",
-      "obs": "Observação 5",
+      "companyName": "Empresa 1",
+      "resale": "Revenda 1",
+      "attendanceNumber": 5764,
+      "sellerName": "Vendedorzinho",
+      "totalValue": 320,
+      "quantityItems": 32,
+      "boxCode": "6546",
       "status": "Em Andamento",
-      "deliveryPerson": {
-        "id": "1",
-        "name": "Leticia",
-        "transportType": "Motocicleta"
-      },
+      "employeeId": 5,
       "address": "Rua das Flores, Bairro Centro"
     },
     {
       "id": "5",
-      "companyName": "Company 6",
-      "resale": "Resale 6",
-      "attendanceNumber": "890123",
-      "sellerName": "Seller 6",
-      "totalValue": "232",
-      "quantityItems": "2",
-      "boxCode": "124",
-      "obs": "Observação 6",
-      "status": "Concluído",
-      "deliveryPerson": {
-        "id": "2",
-        "name": "Sérgio",
-        "transportType": "Carro"
-      },
-      "address": "Rua das Flores, Bairro Centro"
+      "companyName": "Teste 1",
+      "resale": "Teste 1",
+      "attendanceNumber": 123,
+      "sellerName": "Teste 1",
+      "totalValue": 123,
+      "quantityItems": 123,
+      "boxCode": "123",
+      "status": "Em Andamento",
+      "address": "Teste 1",
+      "employeeId": 1
     }
   ]
 }

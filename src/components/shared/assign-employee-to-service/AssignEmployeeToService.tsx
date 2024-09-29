@@ -12,7 +12,13 @@ import { Label } from "@/components/ui/label";
 import { Employee } from "@/types/employee";
 import { Service } from "@/types/service";
 
-import "./AssignEmployeeToService.scss";
+import style from "./AssignEmployeeToService.module.scss";
+// import {
+//   Select,
+//   SelectTrigger,
+//   SelectContent,
+//   SelectItem,
+// } from "@/components/ui/select";
 
 interface AssignEmployeeToServiceSheetProps {
   service: Service;
@@ -46,14 +52,22 @@ const AssignEmployeeToServiceSheet: React.FC<
     const updatedService = {
       ...service,
       employeeId: selectedEmployeeId,
+      status: "Em Andamento",
     };
 
     try {
-      await axios.put(
-        `http://localhost:5000/services/${service.id}`,
+      console.log(
+        `Assigning employee ${selectedEmployeeId} to service ${service.id}...`
+      );
+      const response = await axios.put(
+        `http://localhost:5000/services/${Number(service.id)}`,
         updatedService
       );
-      onUpdate(updatedService);
+
+      console.log(response);
+
+      const updatedServiceFromResponse = response.data as Service;
+      onUpdate(updatedServiceFromResponse);
     } catch (error) {
       console.error("Erro ao designar entregador:", error);
     }
@@ -62,7 +76,7 @@ const AssignEmployeeToServiceSheet: React.FC<
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant={"outline"} className="assignButton">
+        <Button variant={"outline"} className={style.assignButton}>
           Designar
         </Button>
       </SheetTrigger>
@@ -74,11 +88,15 @@ const AssignEmployeeToServiceSheet: React.FC<
           <Label htmlFor="employee">Selecionar Entregador</Label>
           <select
             id="employee"
-            value={selectedEmployeeId || ""}
-            onChange={(e) => setSelectedEmployeeId(Number(e.target.value))}
-            className="input"
+            value={selectedEmployeeId?.toString() || ""}
+            onChange={(e) => {
+              setSelectedEmployeeId(Number(e.target.value));
+            }}
+            className={style.employeeSelect}
           >
-            <option value="">Selecione um entregador</option>
+            <option className={style.employeeInputText}>
+              Selecionar Entregador
+            </option>
             {employees.map((employee) => (
               <option key={employee.id} value={employee.id}>
                 {employee.name}

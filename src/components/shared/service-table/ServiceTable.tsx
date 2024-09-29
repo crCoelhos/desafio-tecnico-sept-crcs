@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ServiceTable.scss";
@@ -13,20 +14,24 @@ import Pagination from "../pagination/Pagination";
 import { Service } from "@/types/service";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import AddServiceSheet from "../add-service-sheet/AddServiceSheet";
-import ServiceActionButtons from "../service-action-buttons/ServiceActionButtons";
+import EditServiceSheet from "../edit-service-sheet/EditServiceSheet";
+import AssignEmployeeToServiceSheet from "../assign-employee-to-service/AssignEmployeeToService";
 
 export const ServiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
   const [services, setServices] = useState<Service[]>([]);
-  // const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {
     const fetchDeliveries = async () => {
       try {
         const response = await axios.get("http://localhost:5000/services");
-        setServices(response.data as Service[]);
+        const filteredServices = (response.data as Service[]).filter(
+          (service) => service.status === "Aguardando"
+        );
+        setServices(filteredServices);
       } catch (error) {
         console.error("Error fetching deliveries:", error);
       }
@@ -37,38 +42,31 @@ export const ServiceTable: React.FC = () => {
 
   const filteredServices = services.filter((service) => {
     return (
-      (service.companyName &&
-        service.companyName.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (service.resale &&
-        service.resale.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (service.attendanceNumber &&
-        service.attendanceNumber
-          .toString()
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())) ||
-      (service.sellerName &&
-        service.sellerName.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (service.totalValue &&
-        service.totalValue
-          .toString()
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())) ||
-      (service.quantityItems &&
-        service.quantityItems
-          .toString()
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())) ||
-      (service.boxCode &&
-        service.boxCode
-          .toString()
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()))
+      service.companyName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      service.resale?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      service.attendanceNumber
+        ?.toString()
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      service.sellerName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      service.totalValue
+        ?.toString()
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      service.quantityItems
+        ?.toString()
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      service.boxCode
+        ?.toString()
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
     );
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentServices = filteredServices.slice(
+  const currentServices = filteredServices?.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
@@ -80,12 +78,6 @@ export const ServiceTable: React.FC = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, services]);
-
-  const handleDelete = (id: number) => {
-    setServices((prevServices) =>
-      prevServices.filter((service) => service.id !== id)
-    );
-  };
 
   const handleUpdateService = async (updatedService: Service) => {
     try {
@@ -154,10 +146,13 @@ export const ServiceTable: React.FC = () => {
                 <TableCell>{service.quantityItems}</TableCell>
                 <TableCell>{service.boxCode}</TableCell>
                 <TableCell>
-                  <ServiceActionButtons
-                    serviceId={service.id}
+                  {/* <EditServiceSheet
                     service={service}
-                    onDelete={handleDelete}
+                    onUpdate={handleUpdateService}
+                  /> */}
+
+                  <AssignEmployeeToServiceSheet
+                    service={service}
                     onUpdate={handleUpdateService}
                   />
                 </TableCell>
@@ -169,7 +164,7 @@ export const ServiceTable: React.FC = () => {
 
       <Pagination
         itemsPerPage={itemsPerPage}
-        totalItems={filteredServices.length}
+        totalItems={filteredServices?.length}
         paginate={paginate}
         currentPage={currentPage}
         onPageChange={paginate}

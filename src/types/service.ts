@@ -4,13 +4,14 @@ export interface Service {
   id: number;
   companyName: string;
   resale: string;
-  attendanceNumber: number;
+  attendanceNumber?: number;
   deliveryPerson?: Employee;
   sellerName: string;
-  totalValue: number;
-  quantityItems: number;
-  boxCode: string;
+  totalValue?: number;
+  quantityItems?: number;
+  boxCode?: number | undefined;
   address: string;
+  employeeId?: number;
   status:
     | "Aguardando"
     | "Em Andamento"

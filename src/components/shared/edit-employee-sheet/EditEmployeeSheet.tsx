@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Employee } from "@/types/employee";
 import { Edit2Icon } from "lucide-react";
-import "./EditEmployeeSheet.scss";
+import style from "./EditEmployeeSheet.module.scss";
 
 interface EditEmployeeSheetProps {
   employee: Employee;
@@ -62,10 +62,11 @@ const EditEmployeeSheet: React.FC<EditEmployeeSheetProps> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button id="editEmployeeButton">
-          <Edit2Icon width={"25px"} height={"25px"}></Edit2Icon>Editar
+        <Button className={style.editEmployeeButton}>
+          <Edit2Icon className={style.editIcon}></Edit2Icon>Editar
         </Button>
       </SheetTrigger>
+
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Editar Entrega</SheetTitle>

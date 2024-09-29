@@ -43,10 +43,15 @@ const DeliveryTable: React.FC = () => {
 
   const filteredDeliveries = deliveries.filter((delivery) => {
     return (
-      delivery.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      delivery.CPF.includes(searchTerm) ||
-      delivery.transportType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      delivery.retailName.toLowerCase().includes(searchTerm.toLowerCase())
+      (delivery.name &&
+        delivery.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (delivery.CPF && delivery.CPF.includes(searchTerm)) ||
+      (delivery.transportType &&
+        delivery.transportType
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())) ||
+      (delivery.retailName &&
+        delivery.retailName.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 

@@ -22,13 +22,14 @@ interface AddServiceSheetProps {
 }
 
 const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
-  const [companyName, setCompanyName] = useState("");
-  const [resale, setResale] = useState("");
-  const [attendanceNumber, setAttendanceNumber] = useState("");
-  const [sellerName, setSellerName] = useState("");
-  const [totalValue, setTotalValue] = useState("");
-  const [quantityItems, setQuantityItems] = useState("");
-  const [boxCode, setBoxCode] = useState("");
+  const [companyName, setCompanyName] = useState<string>("");
+  const [resale, setResale] = useState<string>("");
+  const [attendanceNumber, setAttendanceNumber] = useState<number>();
+  const [sellerName, setSellerName] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [quantityItems, setQuantityItems] = useState<number>();
+  const [totalValue, setTotalValue] = useState<number>();
+  const [boxCode, setBoxCode] = useState<number>();
 
   const getNextId = async () => {
     try {
@@ -53,6 +54,8 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
       totalValue: Number(totalValue),
       quantityItems: Number(quantityItems),
       boxCode: boxCode,
+      status: "Aguardando" as const,
+      address: address,
     };
 
     try {
@@ -62,7 +65,7 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
       );
 
       if (response.status === 201) {
-        setServices((prevServices) => [...prevServices, newService]);
+        setServices((prevServices: Service[]) => [...prevServices, newService]);
       }
     } catch (error) {
       console.error("Error adding employee:", error);
@@ -107,17 +110,6 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="attendanceNumber" className="text-right">
-              Numero do atendimento
-            </Label>
-            <Input
-              id="attendanceNumber"
-              value={attendanceNumber}
-              onChange={(e) => setAttendanceNumber(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="sellerName" className="text-right">
               Nome do vendedor
             </Label>
@@ -129,13 +121,13 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="totalValue" className="text-right">
-              Valor total
+            <Label htmlFor="attendanceNumber" className="text-right">
+              Numero do atendimento
             </Label>
             <Input
-              id="totalValue"
-              value={totalValue}
-              onChange={(e) => setTotalValue(e.target.value)}
+              id="attendanceNumber"
+              value={attendanceNumber}
+              onChange={(e) => setAttendanceNumber(Number(e.target.value))}
               className="col-span-3"
             />
           </div>
@@ -146,7 +138,29 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
             <Input
               id="quantityItems"
               value={quantityItems}
-              onChange={(e) => setQuantityItems(e.target.value)}
+              onChange={(e) => setQuantityItems(Number(e.target.value))}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="totalValue" className="text-right">
+              Valor total
+            </Label>
+            <Input
+              id="totalValue"
+              value={totalValue}
+              onChange={(e) => setTotalValue(Number(e.target.value))}
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="address" className="text-right">
+              Endereço
+            </Label>
+            <Input
+              id="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               className="col-span-3"
             />
           </div>
@@ -157,7 +171,7 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
             <Input
               id="boxCode"
               value={boxCode}
-              onChange={(e) => setBoxCode(e.target.value)}
+              onChange={(e) => setBoxCode(Number(e.target.value))}
               className="col-span-3"
             />
           </div>
