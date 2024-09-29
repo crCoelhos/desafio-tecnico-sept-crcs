@@ -11,5 +11,10 @@ export interface Service {
   quantityItems: number;
   boxCode: string;
   address: string;
-  status: "Em Andamento" | "Concluído" | "Cancelado";
+  status:
+    | "Aguardando"
+    | "Em Andamento"
+    | "Concluído"
+    | "Cancelado"
+    | "Arquivado";
 }

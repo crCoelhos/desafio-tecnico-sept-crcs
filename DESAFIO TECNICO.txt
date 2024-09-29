@@ -1,5 +1,3 @@
-DESAFIO TÉCNICO
-
 A gestão de entregas em empresas automotivas é uma tarefa complexa que exige organização e eficiência. O gerente da empresa enfrenta dificuldades significativas para monitorar os horários de saída e retorno das entregas, o que torna crucial o desenvolvimento de uma interface que simplifique e otimize esse acompanhamento. O objetivo principal dessa interface é criar uma tela interativa que organize as informações em quatro conjuntos de cards, cada um dedicado a uma área específica da gestão de entregas, proporcionando ao usuário uma experiência clara, eficiente e intuitiva.
 
 O primeiro conjunto de cards será focado no gerenciamento dos entregadores. Neste espaço, o sistema deve permitir o cadastro, edição e exclusão de entregadores, exibindo informações essenciais como nome, CPF, tipo de transporte e a revenda à qual o entregador está associado. A possibilidade de gerenciar esses dados diretamente nos cards visa agilizar o processo e tornar a interface mais dinâmica e fácil de usar.

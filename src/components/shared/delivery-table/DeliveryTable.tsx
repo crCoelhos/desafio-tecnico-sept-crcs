@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import AddEmployeeButton from "../add-employee-sheet/AddEmployeeSheet";
-import Pagination from "../delivery-pagination/DeliveryPagination";
+import Pagination from "../pagination/Pagination";
 import RemoveEmployeeButton from "../remove-employee-button/RemoveEmployeeButton";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import EditEmployeeSheet from "../edit-employee-sheet/EditEmployeeSheet";

@@ -20,6 +20,34 @@
       "CPF": "321123",
       "transportType": "Carro",
       "retailName": "Comercio"
+    },
+    {
+      "id": "3",
+      "name": "Sérgio",
+      "CPF": "321123",
+      "transportType": "Carro",
+      "retailName": "Comercio"
+    },
+    {
+      "id": "4",
+      "name": "Sérgio",
+      "CPF": "321123",
+      "transportType": "Carro",
+      "retailName": "Comercio"
+    },
+    {
+      "id": "5",
+      "name": "Sérgio",
+      "CPF": "321123",
+      "transportType": "Carro",
+      "retailName": "Comercio"
+    },
+    {
+      "id": "6",
+      "name": "Sérgio",
+      "CPF": "321123",
+      "transportType": "Carro",
+      "retailName": "Comercio"
     }
   ],
   "services": [
@@ -118,7 +146,7 @@
       "quantityItems": "2",
       "boxCode": "124",
       "obs": "Observação 6",
-      "status": "Em Andamento",
+      "status": "Concluído",
       "deliveryPerson": {
         "id": "2",
         "name": "Sérgio",

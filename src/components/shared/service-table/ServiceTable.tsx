@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Pagination from "../delivery-pagination/DeliveryPagination";
+import Pagination from "../pagination/Pagination";
 import { Service } from "@/types/service";
 import SearchEmployeeInput from "../search-employee-input/SearchEmployeeInput";
 import AddServiceSheet from "../add-service-sheet/AddServiceSheet";

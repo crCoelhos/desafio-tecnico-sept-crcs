@@ -1,0 +1,45 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    background-color: #0d9c44;
+    color: white;
+
+    &:hover {
+        background: #078337;
+        transition: 200ms ease-in-out;
+        cursor: pointer;
+    }
+}
+
+.cardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.finishDeliveryButton {
+    background-color: white;
+    color: #0d9c44;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background: #065826;
+        color: white;
+        transition: 200ms ease-in-out;
+    }
+}
