@@ -109,17 +109,8 @@
       "address": "Travessa 789, Bairro Jardim"
     },
     {
-      "id": "3",
-      "companyName": "Company 4",
-      "resale": "Resale 4",
-      "attendanceNumber": 4,
-      "sellerName": "Seller 4",
-      "totalValue": 4,
-      "quantityItems": 4,
-      "boxCode": 4,
-      "obs": "Observação 4",
-      "status": "Aguardando",
-      "address": "Rua das Flores, Bairro Centro"
+      "status": "Cancelado",
+      "id": "3"
     },
     {
       "id": "5",

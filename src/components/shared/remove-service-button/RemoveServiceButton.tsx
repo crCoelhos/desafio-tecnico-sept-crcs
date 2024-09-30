@@ -7,25 +7,27 @@ import style from "./RemoveServiceButton.module.scss";
 
 interface RemoveServiceButtonProps {
   serviceId: number;
-  onDelete: (id: number) => void;
+  onUpdate: (id: number) => void;
 }
 
 const RemoveServiceButton: React.FC<RemoveServiceButtonProps> = ({
   serviceId,
-  onDelete,
+  onUpdate,
 }) => {
-  const handleDelete = async () => {
+  const handleCancel = async () => {
     try {
-      await axios.delete(`http://localhost:5000/services/${serviceId}`);
-      onDelete(serviceId);
+      await axios.put(`http://localhost:5000/services/${serviceId}`, {
+        status: "Cancelado",
+      });
+      onUpdate(serviceId);
     } catch (error) {
-      console.error("Erro ao excluir o serviço:", error);
+      console.error("Erro ao cancelar o serviço:", error);
     }
   };
 
   return (
     <Button
-      onClick={handleDelete}
+      onClick={handleCancel}
       variant="outline"
       className={style.removeButton}
     >

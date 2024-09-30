@@ -156,7 +156,7 @@ export const ServiceTable: React.FC = () => {
                       />
                       <RemoveServiceButton
                         serviceId={Number(service.id)}
-                        onDelete={(id) =>
+                        onUpdate={(id) =>
                           setServices(
                             services.filter(
                               (service) => Number(service.id) !== id
