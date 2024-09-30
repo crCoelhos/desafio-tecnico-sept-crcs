@@ -77,11 +77,17 @@ const ObservationDescriptionCard: React.FC<ObservationDescriptionCardProps> = (
           )
         </p>
       </CardContent>
-      <CardFooter>
+      <CardFooter className={style.serviceDescriptionFooter}>
         <p>
           Situação:{" "}
           <span className={style.serviceDescription}>
             {props.service.status}
+          </span>
+        </p>
+        <p>
+          Observação:{" "}
+          <span className={style.serviceDescription}>
+            {props.service.observation ? props.service.observation : "N/A"}
           </span>
         </p>
       </CardFooter>

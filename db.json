@@ -124,7 +124,8 @@
       "employeeId": 1,
       "startedAt": "2024-09-30T00:51:39.619Z",
       "finishedAt": "2024-09-30T00:53:08.603Z",
-      "tripDuration": "00:01:28"
+      "tripDuration": "00:01:28",
+      "observation": "Observação teste"
     },
     {
       "id": "6",
@@ -163,8 +164,10 @@
       "totalValue": 40,
       "quantityItems": 2,
       "boxCode": 42,
-      "status": "Aguardando",
-      "address": "endereço tempo"
+      "status": "Em Andamento",
+      "address": "endereço tempo",
+      "employeeId": 1,
+      "startedAt": "2024-09-30T02:52:44.643Z"
     }
   ]
 }

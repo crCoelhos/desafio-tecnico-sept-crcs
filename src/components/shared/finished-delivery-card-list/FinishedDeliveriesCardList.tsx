@@ -18,9 +18,7 @@ import {
 } from "@/components/ui/hover-card";
 import ObservationSheet from "../observation-sheet/ObservationSheet";
 
-// #TODO: indicator on the card to show how long the delivery took to be completed
-// #TODO: hover effect on the card to show the delivery details
-// plus a somekind of mechanism to make observations about the trip
+// #TODO: somekind of mechanism to make observations about the trip
 
 const FinishedDeliveriesCardList: React.FC = () => {
   const { globalServices, setGlobalServices, globalEmployees } =
@@ -109,6 +107,10 @@ const FinishedDeliveriesCardList: React.FC = () => {
                 <p>Situação: {delivery.status}</p>
                 <p>Duração da viagem: {delivery.tripDuration} </p>
               </div>
+              <p>
+                Observação:{" "}
+                {delivery.observation ? delivery.observation : "N/A"}
+              </p>
             </HoverCardContent>
           </HoverCard>
         </>

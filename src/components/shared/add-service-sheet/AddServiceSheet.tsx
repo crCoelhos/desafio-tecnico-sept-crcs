@@ -82,7 +82,7 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
           <PlusIcon /> Criar Serviço
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent side={"left"}>
         <SheetHeader>
           <SheetTitle>Criar serviço</SheetTitle>
           <SheetDescription>
