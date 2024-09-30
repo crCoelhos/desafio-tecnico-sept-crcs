@@ -15,8 +15,8 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import ObservationSheet from "../observation-sheet/ObservationSheet";
 import styles from "./finishedDeliveriesCardList.module.scss";
+import ObservationSheet from "../observation-sheet/ObservationSheet";
 
 // #TODO: somekind of mechanism to make observations about the trip
 

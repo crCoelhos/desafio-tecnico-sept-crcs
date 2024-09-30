@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -23,7 +22,7 @@ export const ServiceTable: React.FC = () => {
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
   const [services, setServices] = useState<Service[]>([]);
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  // const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {
     const fetchDeliveries = async () => {
