@@ -21,4 +21,6 @@ export interface Service {
   startedAt?: Date;
   finishedAt?: Date;
   canceledAt?: Date;
+  tripDuration?: string;
+  observation?: string;
 }

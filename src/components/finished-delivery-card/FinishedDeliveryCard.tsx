@@ -5,6 +5,7 @@ import FinishedDeliveriesCardList from "../shared/finished-delivery-card-list/Fi
 const FinishedDeliveryCard: React.FC = () => {
   return (
     <div className={style.finishedDeliveryCard}>
+      <h2 className={style.cardTitle}> Entregas finalizadas ou canceladas </h2>
       <FinishedDeliveriesCardList />
     </div>
   );

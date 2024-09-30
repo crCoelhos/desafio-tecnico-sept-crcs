@@ -75,7 +75,7 @@ const AssignEmployeeToServiceSheet: React.FC<
           Designar
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent side={"left"}>
         <SheetHeader>
           <SheetTitle>Designar Entregador</SheetTitle>
         </SheetHeader>

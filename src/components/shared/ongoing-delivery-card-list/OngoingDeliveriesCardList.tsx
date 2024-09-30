@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -16,8 +16,6 @@ import { Employee } from "@/types/employee";
 import { useDeliveryContext } from "@/context/DeliveryContext";
 import TimeCounter from "../time-counter/TimeCounter";
 
-// #TODO: timer on the card to show how long the delivery has been ongoing
-
 const OngoingDeliveriesCardList: React.FC = () => {
   const {
     globalServices,
@@ -25,6 +23,8 @@ const OngoingDeliveriesCardList: React.FC = () => {
     globalEmployees,
     setGlobalEmployees,
   } = useDeliveryContext();
+
+  const [timeElapsed, setTimeElapsed] = useState<string>("00:00:00");
 
   const ongoingDeliveries = globalServices.filter(
     (service) => service.status === "Em Andamento"
@@ -60,7 +60,12 @@ const OngoingDeliveriesCardList: React.FC = () => {
     try {
       const updatedServices = globalServices.map((service) =>
         Number(service.id) === deliveryId
-          ? { ...service, finishedAt: new Date(), status: "Concluído" as const }
+          ? {
+              ...service,
+              finishedAt: new Date(),
+              status: "Concluído" as const,
+              tripDuration: timeElapsed,
+            }
           : service
       );
 
@@ -116,7 +121,10 @@ const OngoingDeliveriesCardList: React.FC = () => {
               <p>
                 Decorrido:{" "}
                 {delivery.startedAt && (
-                  <TimeCounter startTime={new Date(delivery.startedAt)} />
+                  <TimeCounter
+                    startTime={new Date(delivery.startedAt)}
+                    onTimeUpdate={setTimeElapsed}
+                  />
                 )}
               </p>
             </div>

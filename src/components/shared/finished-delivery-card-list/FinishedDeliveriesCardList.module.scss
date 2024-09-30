@@ -43,3 +43,39 @@
         transition: 200ms ease-in-out;
     }
 }
+
+.hoverCardContent {
+    background: #74e09e;
+
+    width: 100%;
+
+    font-weight: lighter;
+
+    h2 {
+        font-weight: bold;
+        text-align: center;
+        margin: 0 0 4px 0;
+    }
+
+    &last-child {
+        font-weight: bolder;
+    }
+}
+
+.hoverCardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hoverCardFooterFeeedbackButton {
+    background-color: white;
+    color: #0d9c44;
+    font-weight: bolder;
+
+    &:hover {
+        color: white;
+        background: #0d9c44;
+    }
+}

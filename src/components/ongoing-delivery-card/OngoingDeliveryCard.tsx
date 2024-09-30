@@ -5,6 +5,7 @@ import style from "./OngoingDeliveryCard.module.scss";
 const OngoingDeliveryCard: React.FC = () => {
   return (
     <div className={style.ongoingDeliveryCard}>
+      <h2 className={style.cardTitle}> Entregas em andamento </h2>
       <OngoingDeliveriesCardList />
     </div>
   );
