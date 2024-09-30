@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { BikeIcon, CarIcon } from "lucide-react";
-import styles from "./finisheddeliveriescardlist.module.scss";
+import styles from "./finishedDeliveriesCardList.module.scss";
 import { useDeliveryContext } from "@/context/DeliveryContext";
 import {
   HoverCard,
@@ -71,8 +71,10 @@ const FinishedDeliveriesCardList: React.FC = () => {
             <HoverCardTrigger>
               <Card key={delivery.id} className={styles.card}>
                 <CardHeader>
-                  <CardTitle>
-                    Atendimento #{delivery.attendanceNumber}
+                  <CardTitle className={styles.cardHeader}>
+                    <p>Atendimento #{delivery.attendanceNumber}</p>
+
+                    <ObservationSheet service={delivery} />
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -93,8 +95,6 @@ const FinishedDeliveriesCardList: React.FC = () => {
                     ) : (
                       <BikeIcon />
                     ))}
-
-                  <ObservationSheet />
                 </CardFooter>
               </Card>
             </HoverCardTrigger>
@@ -102,7 +102,8 @@ const FinishedDeliveriesCardList: React.FC = () => {
               <h2>Detalhes da entrega:</h2>
               <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
               <p>Endereço: {delivery.address}</p>
-              <p>Tempo de entrega: {delivery.finishedAt?.toLocaleString()}</p>
+              <p>Quantidade: {delivery.quantityItems}</p>
+              <p>Valor total: R$ {delivery.totalValue}</p>
 
               <div>
                 <p>Situação: {delivery.status}</p>

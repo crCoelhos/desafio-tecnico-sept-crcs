@@ -44,10 +44,16 @@
     }
 }
 
-.hoverCardContent {
-    background: #74e09e;
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
-    width: 100%;
+.hoverCardContent {
+    border: solid 2px #0d9c44;
+
+    min-width: 320px;
 
     font-weight: lighter;
 
@@ -70,12 +76,6 @@
 }
 
 .hoverCardFooterFeeedbackButton {
-    background-color: white;
-    color: #0d9c44;
     font-weight: bolder;
 
-    &:hover {
-        color: white;
-        background: #0d9c44;
-    }
 }

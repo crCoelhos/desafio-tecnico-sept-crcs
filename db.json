@@ -55,7 +55,7 @@
       "boxCode": "5764",
       "address": "Avenida 456, Bairro Industrial",
       "obs": "Observação 1",
-      "status": "Concluído",
+      "status": "Arquivado",
       "employeeId": 1,
       "startedAt": null,
       "finishedAt": null
@@ -70,11 +70,8 @@
       "quantityItems": "5",
       "boxCode": "456",
       "obs": "Observação 2",
-      "status": "Concluído",
-      "employeeId": 2,
-      "address": "Avenida 456, Bairro Industrial",
-      "startedAt": null,
-      "finishedAt": null
+      "status": "Aguardando",
+      "address": "Avenida 456, Bairro Industrial"
     },
     {
       "id": "2",
@@ -86,11 +83,8 @@
       "quantityItems": "15",
       "boxCode": "789",
       "obs": "Observação 3",
-      "status": "Arquivado",
-      "employeeId": 2,
-      "address": "Travessa 789, Bairro Jardim",
-      "startedAt": null,
-      "finishedAt": null
+      "status": "Aguardando",
+      "address": "Travessa 789, Bairro Jardim"
     },
     {
       "id": "3",
@@ -102,12 +96,8 @@
       "quantityItems": "20",
       "boxCode": "101",
       "obs": "Observação 4",
-      "status": "Concluído",
-      "employeeId": 1,
-      "address": "Rua das Flores, Bairro Centro",
-      "startedAt": "2024-09-30T00:47:20.908Z",
-      "finishedAt": "2024-09-30T00:47:29.124Z",
-      "tripDuration": "00:00:00"
+      "status": "Aguardando",
+      "address": "Rua das Flores, Bairro Centro"
     },
     {
       "id": "4",
@@ -118,8 +108,7 @@
       "totalValue": 320,
       "quantityItems": 32,
       "boxCode": "6546",
-      "status": "Arquivado",
-      "employeeId": 5
+      "status": "Aguardando"
     },
     {
       "id": "5",
