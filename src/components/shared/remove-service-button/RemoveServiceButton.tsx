@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-// import { TrashIcon } from "lucide-react";
-
 import style from "./RemoveServiceButton.module.scss";
 
 interface RemoveServiceButtonProps {
@@ -31,7 +29,6 @@ const RemoveServiceButton: React.FC<RemoveServiceButtonProps> = ({
       variant="outline"
       className={style.removeButton}
     >
-      {/* <TrashIcon /> */}
       Cancelar
     </Button>
   );

@@ -96,17 +96,8 @@
       "address": "Avenida 456, Bairro Industrial"
     },
     {
-      "id": "2",
-      "companyName": "Comercio 3",
-      "resale": "Resale 3",
-      "attendanceNumber": 3,
-      "sellerName": "Seller 3",
-      "totalValue": 3,
-      "quantityItems": 3,
-      "boxCode": 3,
-      "obs": "Observação 3",
-      "status": "Aguardando",
-      "address": "Travessa 789, Bairro Jardim"
+      "status": "Cancelado",
+      "id": "2"
     },
     {
       "status": "Cancelado",
