@@ -75,7 +75,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
         <Button onClick={() => console.log("Triggou!")}>Editar</Button>
       </SheetTrigger>
 
-      <SheetContent>
+      <SheetContent side={"left"}>
         <SheetHeader>
           <SheetTitle>Editar Serviço</SheetTitle>
           <SheetDescription>
@@ -157,7 +157,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
             <Input
               id="boxCode"
               value={boxCode}
-              onChange={(e) => setBoxCode(e.target.value)}
+              onChange={(e) => setBoxCode(Number(e.target.value))}
               className="col-span-3"
             />
           </div>

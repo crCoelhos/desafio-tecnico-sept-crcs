@@ -9,7 +9,6 @@ import {
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { BikeIcon, CarIcon } from "lucide-react";
-import styles from "./finishedDeliveriesCardList.module.scss";
 import { useDeliveryContext } from "@/context/DeliveryContext";
 import {
   HoverCard,
@@ -17,6 +16,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import ObservationSheet from "../observation-sheet/ObservationSheet";
+import styles from "./finishedDeliveriesCardList.module.scss";
 
 // #TODO: somekind of mechanism to make observations about the trip
 
@@ -25,7 +25,8 @@ const FinishedDeliveriesCardList: React.FC = () => {
     useDeliveryContext();
 
   const finishedDeliveries = globalServices.filter(
-    (service) => service.status === "Concluído"
+    (service) =>
+      service.status === "Concluído" || service.status === "Cancelado"
   );
 
   const handleArchiveDelivery = async (deliveryId: number) => {
@@ -67,7 +68,14 @@ const FinishedDeliveriesCardList: React.FC = () => {
         <>
           <HoverCard>
             <HoverCardTrigger>
-              <Card key={delivery.id} className={styles.card}>
+              <Card
+                key={delivery.id}
+                className={
+                  delivery.status === "Concluído"
+                    ? styles.finishedCard
+                    : styles.canceledCard
+                }
+              >
                 <CardHeader>
                   <CardTitle className={styles.cardHeader}>
                     <p>Atendimento #{delivery.attendanceNumber}</p>

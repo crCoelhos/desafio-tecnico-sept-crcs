@@ -16,6 +16,7 @@ import AddServiceSheet from "../add-service-sheet/AddServiceSheet";
 import EditServiceSheet from "../edit-service-sheet/EditServiceSheet";
 import AssignEmployeeToServiceSheet from "../assign-employee-to-service/AssignEmployeeToService";
 import style from "./ServiceTable.module.scss";
+import RemoveServiceButton from "../remove-service-button/RemoveServiceButton";
 
 export const ServiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -147,15 +148,29 @@ export const ServiceTable: React.FC = () => {
                 <TableCell>{service.quantityItems}</TableCell>
                 <TableCell>{service.boxCode}</TableCell>
                 <TableCell>
-                  {/* <EditServiceSheet
-                    service={service}
-                    onUpdate={handleUpdateService}
-                  /> */}
+                  <div className={style.ActionButtons}>
+                    <div className={style.firstActionButtonsRow}>
+                      <EditServiceSheet
+                        service={service}
+                        onUpdate={handleUpdateService}
+                      />
+                      <RemoveServiceButton
+                        serviceId={Number(service.id)}
+                        onDelete={(id) =>
+                          setServices(
+                            services.filter(
+                              (service) => Number(service.id) !== id
+                            )
+                          )
+                        }
+                      />
+                    </div>
 
-                  <AssignEmployeeToServiceSheet
-                    service={service}
-                    onUpdate={handleUpdateService}
-                  />
+                    <AssignEmployeeToServiceSheet
+                      service={service}
+                      onUpdate={handleUpdateService}
+                    />
+                  </div>
                 </TableCell>
               </TableRow>
             ))

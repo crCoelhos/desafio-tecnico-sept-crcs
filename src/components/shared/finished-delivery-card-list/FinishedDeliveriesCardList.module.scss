@@ -12,7 +12,7 @@
     }
 }
 
-.card {
+.finishedCard {
     background-color: #0d9c44;
     color: white;
 
@@ -21,6 +21,34 @@
         transition: 200ms ease-in-out;
         cursor: pointer;
     }
+}
+
+.canceledCard {
+    background-color: #c1121f;
+    color: white;
+
+    &:hover {
+        background: #780000;
+        transition: 200ms ease-in-out;
+        cursor: pointer;
+    }
+
+
+    .finishDeliveryButton {
+        background-color: white;
+        color: #780000;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background: #c1121f;
+            color: white;
+            transition: 200ms ease-in-out;
+        }
+    }
+
 }
 
 .cardFooter {

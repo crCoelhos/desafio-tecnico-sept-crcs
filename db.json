@@ -2,31 +2,53 @@
   "employees": [
     {
       "id": "1",
-      "name": "Leticia",
-      "CPF": "321123",
-      "transportType": "Motocicleta",
-      "retailName": "Comercio"
+      "companyName": "Comercio 2",
+      "resale": "Resale 2",
+      "attendanceNumber": 2,
+      "sellerName": "Seller 2",
+      "totalValue": 2,
+      "quantityItems": 2,
+      "boxCode": 2,
+      "obs": "Observação 2",
+      "status": "Aguardando",
+      "address": "Avenida 456, Bairro Industrial"
     },
     {
       "id": "2",
-      "name": "Sérgio",
-      "CPF": "321123",
-      "transportType": "Carro",
-      "retailName": "Comercio"
+      "companyName": "Comercio 3",
+      "resale": "Resale 3",
+      "attendanceNumber": 3,
+      "sellerName": "Seller 3",
+      "totalValue": 3,
+      "quantityItems": 3,
+      "boxCode": 3,
+      "obs": "Observação 3",
+      "status": "Aguardando",
+      "address": "Travessa 789, Bairro Jardim"
     },
     {
       "id": "3",
-      "name": "Rogério",
-      "CPF": "321123",
-      "transportType": "Carro",
-      "retailName": "Comercio"
+      "companyName": "Company 4",
+      "resale": "Resale 4",
+      "attendanceNumber": 4,
+      "sellerName": "Seller 4",
+      "totalValue": 4,
+      "quantityItems": 4,
+      "boxCode": 4,
+      "obs": "Observação 4",
+      "status": "Aguardando",
+      "address": "Rua das Flores, Bairro Centro"
     },
     {
       "id": "4",
-      "name": "Samantha",
-      "CPF": "321123",
-      "transportType": "Carro",
-      "retailName": "Comercio"
+      "companyName": "Empresa 1",
+      "resale": "Revenda 1",
+      "attendanceNumber": 1,
+      "sellerName": "Vendedorzinho",
+      "totalValue": 1,
+      "quantityItems": 1,
+      "boxCode": 1,
+      "status": "Aguardando"
     },
     {
       "id": "5",
@@ -64,11 +86,11 @@
       "id": "1",
       "companyName": "Comercio 2",
       "resale": "Resale 2",
-      "attendanceNumber": "654321",
+      "attendanceNumber": 2,
       "sellerName": "Seller 2",
-      "totalValue": "1500",
-      "quantityItems": "5",
-      "boxCode": "456",
+      "totalValue": 2,
+      "quantityItems": 2,
+      "boxCode": 2,
       "obs": "Observação 2",
       "status": "Aguardando",
       "address": "Avenida 456, Bairro Industrial"
@@ -77,11 +99,11 @@
       "id": "2",
       "companyName": "Comercio 3",
       "resale": "Resale 3",
-      "attendanceNumber": "789012",
+      "attendanceNumber": 3,
       "sellerName": "Seller 3",
-      "totalValue": "2000",
-      "quantityItems": "15",
-      "boxCode": "789",
+      "totalValue": 3,
+      "quantityItems": 3,
+      "boxCode": 3,
       "obs": "Observação 3",
       "status": "Aguardando",
       "address": "Travessa 789, Bairro Jardim"
@@ -90,25 +112,14 @@
       "id": "3",
       "companyName": "Company 4",
       "resale": "Resale 4",
-      "attendanceNumber": "890123",
+      "attendanceNumber": 4,
       "sellerName": "Seller 4",
-      "totalValue": "2500",
-      "quantityItems": "20",
-      "boxCode": "101",
+      "totalValue": 4,
+      "quantityItems": 4,
+      "boxCode": 4,
       "obs": "Observação 4",
       "status": "Aguardando",
       "address": "Rua das Flores, Bairro Centro"
-    },
-    {
-      "id": "4",
-      "companyName": "Empresa 1",
-      "resale": "Revenda 1",
-      "attendanceNumber": 5764,
-      "sellerName": "Vendedorzinho",
-      "totalValue": 320,
-      "quantityItems": 32,
-      "boxCode": "6546",
-      "status": "Aguardando"
     },
     {
       "id": "5",
@@ -152,7 +163,8 @@
       "totalValue": 123,
       "quantityItems": 32,
       "boxCode": 1231231,
-      "status": "Aguardando",
+      "employeeId": 1,
+      "status": "Cancelado",
       "address": "endereço teste"
     },
     {
@@ -164,10 +176,12 @@
       "totalValue": 40,
       "quantityItems": 2,
       "boxCode": 42,
-      "status": "Em Andamento",
+      "status": "Concluído",
       "address": "endereço tempo",
       "employeeId": 1,
-      "startedAt": "2024-09-30T02:52:44.643Z"
+      "startedAt": "2024-09-30T02:52:44.643Z",
+      "finishedAt": "2024-09-30T03:27:15.751Z",
+      "tripDuration": "00:34:31"
     }
   ]
 }

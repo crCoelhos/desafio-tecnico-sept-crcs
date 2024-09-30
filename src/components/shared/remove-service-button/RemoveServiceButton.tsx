@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { TrashIcon } from "lucide-react";
+// import { TrashIcon } from "lucide-react";
 
-import "./RemoveServiceButton.scss";
+import style from "./RemoveServiceButton.module.scss";
 
 interface RemoveServiceButtonProps {
   serviceId: number;
@@ -24,8 +24,13 @@ const RemoveServiceButton: React.FC<RemoveServiceButtonProps> = ({
   };
 
   return (
-    <Button onClick={handleDelete} variant="outline" className="removeButton">
-      <TrashIcon /> Remover
+    <Button
+      onClick={handleDelete}
+      variant="outline"
+      className={style.removeButton}
+    >
+      {/* <TrashIcon /> */}
+      Cancelar
     </Button>
   );
 };
