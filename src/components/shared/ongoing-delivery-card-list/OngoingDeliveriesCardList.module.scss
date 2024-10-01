@@ -14,14 +14,9 @@
 
 
 .card {
-    // background: #c0a74b;
-    // color: white;
-
-    &:hover {
-        // background: #F4D35E;
-        transition: 200ms ease-in-out;
-        cursor: pointer;
-    }
+    background: #ff9f00;
+    color: white;
+    cursor: pointer;
 }
 
 .cardContent {
@@ -45,4 +40,26 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.finishDelivery {
+    background: #0b7a32;
+    color: white;
+    transition: background 200ms ease-in-out;
+
+    &:hover {
+        background: #0d9c44;
+        cursor: pointer;
+    }
+}
+
+.cancelDelivery {
+    background: #a30f1a;
+    color: white;
+    transition: background 200ms ease-in-out;
+
+    &:hover {
+        background: #c1121f;
+        cursor: pointer;
+    }
 }

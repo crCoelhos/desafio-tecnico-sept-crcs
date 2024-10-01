@@ -9,45 +9,12 @@ import { Toaster } from "./components/ui/toaster";
 import { DeliveryProvider } from "./context/DeliveryContext";
 
 function App() {
-  // const [colapseOngoingCard, setColapseOngoingCard] = useState<boolean>(false);
-  // const [colapseServiceCard, setColapseServiceCard] = useState<boolean>(false);
-  // const [colapseFinishedCard, setColapseFinishedCard] =
-  //   useState<boolean>(false);
-  // const [colapseEmployeeCard, setColapseEmployeeCard] =
-  //   useState<boolean>(false);
-
   return (
     <DeliveryProvider>
       <main className="main">
         <div>
           <Sidebar />
         </div>
-        {/* <div className="cards-container">
-          <OngoingDeliveryCard
-            isHidden={colapseOngoingCard}
-            minimizeCardHandler={() =>
-              setColapseOngoingCard(!colapseOngoingCard)
-            }
-          />
-          <ServiceCard
-            isHidden={colapseServiceCard}
-            minimizeCardHandler={() =>
-              setColapseServiceCard(!colapseServiceCard)
-            }
-          />
-          <EmployeeCard
-            isHidden={colapseEmployeeCard}
-            minimizeCardHandler={() =>
-              setColapseEmployeeCard(!colapseEmployeeCard)
-            }
-          />
-          <FinishedDeliveryCard
-            isHidden={colapseFinishedCard}
-            minimizeCardHandler={() =>
-              setColapseFinishedCard(!colapseFinishedCard)
-            }
-          />
-        </div> */}
 
         <Toaster />
         <div className="cards-container">
