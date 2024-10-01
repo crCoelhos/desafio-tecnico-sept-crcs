@@ -5,6 +5,7 @@ import FinishedDeliveryCard from "./components/finished-delivery-card/FinishedDe
 import OngoingDeliveryCard from "./components/ongoing-delivery-card/OngoingDeliveryCard";
 import ServiceCard from "./components/service-card/ServiceCard";
 import Sidebar from "./components/shared/sidebar/Sidebar";
+import { Toaster } from "./components/ui/toaster";
 import { DeliveryProvider } from "./context/DeliveryContext";
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
             }
           />
         </div> */}
+
+        <Toaster />
         <div className="cards-container">
           <OngoingDeliveryCard />
           <ServiceCard />
