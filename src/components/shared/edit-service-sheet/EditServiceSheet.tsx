@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Service } from "@/types/service";
+import { useToast } from "@/hooks/use-toast";
 // import style from "./EditServiceSheet.module.scss";
 
 interface EditServiceSheetProps {
@@ -45,6 +46,8 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
     setBoxCode(service.boxCode);
   }, [service]);
 
+  const { toast } = useToast();
+
   const handleUpdate = async () => {
     const updatedService = {
       ...service,
@@ -64,8 +67,18 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
       );
 
       onUpdate(updatedService);
+      toast({
+        variant: "success",
+        title: "OS ATUALIZADA!",
+        description: `Informações de serviço atualizadas com sucesso.`,
+      });
     } catch (error) {
       console.error("Erro ao atualizar o empregado:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao ATUALIZAR as informações da OS!",
+        description: `Ocorreu um erro ao tentar atualizar as informações da OS. Tente novamente.`,
+      });
     }
   };
 

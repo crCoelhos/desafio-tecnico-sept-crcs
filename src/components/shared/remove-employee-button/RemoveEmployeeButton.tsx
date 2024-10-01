@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 import "./RemoveEmployeeButton.scss";
 import { TrashIcon } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface RemoveEmployeeButtonProps {
   deliveryCPF: string;
@@ -14,6 +15,8 @@ const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({
   deliveryCPF,
   onDelete,
 }) => {
+  const { toast } = useToast();
+
   const handleDelete = async () => {
     try {
       const response = await axios.get<{ id: string; CPF: string }[]>(
@@ -29,8 +32,18 @@ const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({
         );
         onDelete(deliveryCPF);
       }
+      toast({
+        variant: "success",
+        title: "Colaborador REMOVIDO!",
+        description: `O colaborador foi removido com sucesso.`,
+      });
     } catch (error) {
-      console.error("Erro ao excluir a entrega:", error);
+      console.error("Erro ao excluir o colaborador:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao REMOVER Colaborador!",
+        description: `Ocorreu um erro ao tentar remover o colaborador. Tente novamente.`,
+      });
     }
   };
 

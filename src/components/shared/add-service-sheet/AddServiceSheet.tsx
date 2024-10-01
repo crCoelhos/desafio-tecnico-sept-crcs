@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Service } from "@/types/service";
 import "./AddServiceSheet.scss";
+import { useToast } from "@/hooks/use-toast";
 
 interface AddServiceSheetProps {
   setServices: React.Dispatch<React.SetStateAction<Service[]>>;
@@ -30,6 +31,8 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
   const [quantityItems, setQuantityItems] = useState<number>();
   const [totalValue, setTotalValue] = useState<number>();
   const [boxCode, setBoxCode] = useState<number>();
+
+  const { toast } = useToast();
 
   const getNextId = async () => {
     try {
@@ -69,9 +72,20 @@ const AddServiceSheet: React.FC<AddServiceSheetProps> = ({ setServices }) => {
           ...prevServices,
           newService as Service,
         ]);
+
+        toast({
+          variant: "success",
+          title: "OS CRIADA!",
+          description: `A Ordem de Serviço foi criada com sucesso.`,
+        });
       }
     } catch (error) {
       console.error("Error adding employee:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao CRIAR OS!",
+        description: `Ocorreu um erro ao tentar criar a OS. Tente novamente.`,
+      });
     }
   };
 

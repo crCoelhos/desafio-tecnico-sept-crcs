@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import style from "./AddEmployeeButton.module.scss";
+import { useToast } from "@/hooks/use-toast";
 
 interface AddEmployeeSheetProps {
   setDeliveries: React.Dispatch<React.SetStateAction<Employee[]>>;
@@ -28,6 +29,7 @@ const AddEmployeeSheet: React.FC<AddEmployeeSheetProps> = ({
   const [CPF, setCPF] = useState("");
   const [transportType, setTransportType] = useState("");
   const [retailName, setRetailName] = useState("");
+  const { toast } = useToast();
 
   const getNextId = async () => {
     try {
@@ -60,8 +62,19 @@ const AddEmployeeSheet: React.FC<AddEmployeeSheetProps> = ({
       if (response.status === 201) {
         setDeliveries((prevDeliveries) => [...prevDeliveries, newEmployee]);
       }
+
+      toast({
+        variant: "success",
+        title: "Colaborador ADICIONADO!",
+        description: `O colaborador foi adicionado com sucesso.`,
+      });
     } catch (error) {
       console.error("Error adding employee:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao ADICIONAR colaborador!",
+        description: `Ocorreu um erro ao tentar adicionar o colaborador. Tente novamente.`,
+      });
     }
   };
 

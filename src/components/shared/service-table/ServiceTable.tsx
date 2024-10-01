@@ -16,12 +16,14 @@ import EditServiceSheet from "../edit-service-sheet/EditServiceSheet";
 import AssignEmployeeToServiceSheet from "../assign-employee-to-service/AssignEmployeeToService";
 import style from "./ServiceTable.module.scss";
 import RemoveServiceButton from "../remove-service-button/RemoveServiceButton";
+import { useToast } from "@/hooks/use-toast";
 
 export const ServiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
   const [services, setServices] = useState<Service[]>([]);
+  const { toast } = useToast();
   // const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {
@@ -98,9 +100,19 @@ export const ServiceTable: React.FC = () => {
         );
 
         setServices(updatedServices);
+        toast({
+          variant: "success",
+          title: "Serviço ATUALIZADO!",
+          description: `Serviço atualizado com sucesso.`,
+        });
       }
     } catch (error) {
       console.error("Erro ao atualizar o serviço:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao FINALIZAR o serviço!",
+        description: `Ocorreu um erro ao tentar atualizar o serviço. Tente novamente.`,
+      });
     }
   };
 

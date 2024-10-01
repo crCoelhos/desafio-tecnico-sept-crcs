@@ -13,6 +13,7 @@ import { Employee } from "@/types/employee";
 import { Service } from "@/types/service";
 
 import style from "./AssignEmployeeToService.module.scss";
+import { useToast } from "@/hooks/use-toast";
 
 interface AssignEmployeeToServiceSheetProps {
   service: Service;
@@ -26,6 +27,7 @@ const AssignEmployeeToServiceSheet: React.FC<
   const [selectedEmployeeId, setSelectedEmployeeId] = useState<number | null>(
     null
   );
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -63,8 +65,19 @@ const AssignEmployeeToServiceSheet: React.FC<
 
       const updatedServiceFromResponse = response.data as Service;
       onUpdate(updatedServiceFromResponse);
+
+      toast({
+        variant: "info",
+        title: "Entrega INICIADA!",
+        description: `A entrega foi iniciada com sucesso.`,
+      });
     } catch (error) {
       console.error("Erro ao designar entregador:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao DESIGNAR Entregador!",
+        description: `Ocorreu um erro ao tentar designar entregador à entrega. Tente novamente.`,
+      });
     }
   };
 

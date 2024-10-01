@@ -16,6 +16,7 @@ import axios from "axios";
 import { Employee } from "@/types/employee";
 import { Edit2Icon } from "lucide-react";
 import style from "./EditEmployeeSheet.module.scss";
+import { useToast } from "@/hooks/use-toast";
 
 interface EditEmployeeSheetProps {
   employee: Employee;
@@ -30,6 +31,7 @@ const EditEmployeeSheet: React.FC<EditEmployeeSheetProps> = ({
   const [cpf, setCpf] = useState(employee.CPF);
   const [transportType, setTransportType] = useState(employee.transportType);
   const [retailName, setRetailName] = useState(employee.retailName);
+  const { toast } = useToast();
 
   useEffect(() => {
     setName(employee.name);
@@ -54,8 +56,18 @@ const EditEmployeeSheet: React.FC<EditEmployeeSheetProps> = ({
       );
 
       onUpdate(updatedEmployee);
+      toast({
+        variant: "success",
+        title: "Colaborador ATUALIZADO!",
+        description: `O colaborador foi atualizado com sucesso.`,
+      });
     } catch (error) {
       console.error("Erro ao atualizar o empregado:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao ATUALIZAR Colaborador!",
+        description: `Ocorreu um erro ao tentar atualizar o colaborador. Tente novamente.`,
+      });
     }
   };
 
