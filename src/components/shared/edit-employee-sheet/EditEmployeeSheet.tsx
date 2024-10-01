@@ -75,7 +75,7 @@ const EditEmployeeSheet: React.FC<EditEmployeeSheetProps> = ({
     <Sheet>
       <SheetTrigger asChild>
         <Button className={style.editEmployeeButton}>
-          <Edit2Icon className={style.editIcon}></Edit2Icon>Editar
+          <Edit2Icon />
         </Button>
       </SheetTrigger>
 

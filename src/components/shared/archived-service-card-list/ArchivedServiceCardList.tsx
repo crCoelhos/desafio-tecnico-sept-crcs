@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import axios from "axios";
 import {
@@ -39,40 +40,40 @@ const ArchivedServiceCardList: React.FC = () => {
     indexOfLastDelivery
   );
 
-  const handleArchiveDelivery = async (deliveryId: number) => {
-    try {
-      const archivedServices = globalServices.map((service) =>
-        service.id === deliveryId.toString()
-          ? { ...service, status: "Arquivado" as const }
-          : service
-      );
+  // const handleArchiveDelivery = async (deliveryId: number) => {
+  //   try {
+  //     const archivedServices = globalServices.map((service) =>
+  //       service.id === deliveryId.toString()
+  //         ? { ...service, status: "Arquivado" as const }
+  //         : service
+  //     );
 
-      const updatedDelivery = archivedServices.find(
-        (service) => service.id === deliveryId.toString()
-      );
-      if (updatedDelivery) {
-        await axios.put(
-          `http://localhost:5000/services/${deliveryId}`,
-          updatedDelivery
-        );
-        setGlobalServices(archivedServices);
+  //     const updatedDelivery = archivedServices.find(
+  //       (service) => service.id === deliveryId.toString()
+  //     );
+  //     if (updatedDelivery) {
+  //       await axios.put(
+  //         `http://localhost:5000/services/${deliveryId}`,
+  //         updatedDelivery
+  //       );
+  //       setGlobalServices(archivedServices);
 
-        toast({
-          variant: "success",
-          title: "Entrega ARQUIVADA!",
-          description: `A entrega ${updatedDelivery.attendanceNumber} foi arquivada com sucesso.`,
-        });
-      }
-    } catch (error) {
-      console.error("Error archiving delivery:", error);
-      toast({
-        variant: "destructive",
-        title: "Erro ao ARQUIVAR Entrega",
-        description:
-          "Ocorreu um erro ao tentar arquivar a entrega. Tente novamente.",
-      });
-    }
-  };
+  //       toast({
+  //         variant: "success",
+  //         title: "Entrega ARQUIVADA!",
+  //         description: `A entrega ${updatedDelivery.attendanceNumber} foi arquivada com sucesso.`,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error("Error archiving delivery:", error);
+  //     toast({
+  //       variant: "destructive",
+  //       title: "Erro ao ARQUIVAR Entrega",
+  //       description:
+  //         "Ocorreu um erro ao tentar arquivar a entrega. Tente novamente.",
+  //     });
+  //   }
+  // };
 
   const getEmployeeName = (employeeId: number | undefined) => {
     const employee = globalEmployees.find((emp) => emp.id == employeeId);
@@ -108,13 +109,13 @@ const ArchivedServiceCardList: React.FC = () => {
                   <p>Endereço: {delivery.address}</p>
                 </CardContent>
                 <CardFooter className={styles.cardFooter}>
-                  <Button
+                  {/* <Button
                     onClick={() => handleArchiveDelivery(Number(delivery.id))}
                     variant="destructive"
                     className={styles.finishDeliveryButton}
                   >
                     Arquivar Entrega
-                  </Button>
+                  </Button> */}
                   {delivery.employeeId &&
                     (getTransportType(delivery.employeeId) === "Carro" ? (
                       <CarIcon />
@@ -132,7 +133,13 @@ const ArchivedServiceCardList: React.FC = () => {
               <p>Valor total: R$ {delivery.totalValue}</p>
 
               <div>
-                <p>Situação: {delivery.status}</p>
+                <p>
+                  {" "}
+                  Situação:{" "}
+                  <span className={styles.cardStatus}>
+                    {delivery.status}
+                  </span>{" "}
+                </p>
                 <p>Duração da viagem: {delivery.tripDuration} </p>
               </div>
               <p>

@@ -1,4 +1,3 @@
-
 .gridContainer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -14,43 +13,16 @@
 }
 
 .finishedCard {
-    background-color: #0d9c44;
+    background: #1c1c1c;
     color: white;
 
     &:hover {
-        background: #078337;
+        background: #000;
         transition: 200ms ease-in-out;
         cursor: pointer;
     }
 }
 
-.canceledCard {
-    background-color: #c1121f;
-    color: white;
-
-    &:hover {
-        background: #780000;
-        transition: 200ms ease-in-out;
-        cursor: pointer;
-    }
-
-
-    .finishDeliveryButton {
-        background-color: white;
-        color: #780000;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-
-        &:hover {
-            background: #c1121f;
-            color: white;
-            transition: 200ms ease-in-out;
-        }
-    }
-
-}
 
 .cardFooter {
     display: flex;
@@ -108,3 +80,14 @@
     font-weight: bolder;
 
 }
+
+.cardStatus {
+    font-weight: bolder;
+    font-size: 1.1em;
+    color: #444111
+}
+
+// <p> Situação: <span className={styles.cardStatus}>{delivery.status}</span> </p>
+
+
+// <p>Situação: {delivery.status} </p>

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 
-import "./RemoveEmployeeButton.scss";
+import style from "./RemoveEmployeeButton.module.scss";
 import { TrashIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -48,8 +48,12 @@ const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({
   };
 
   return (
-    <Button onClick={handleDelete} variant="outline" className="removeButton">
-      <TrashIcon></TrashIcon>Remover
+    <Button
+      onClick={handleDelete}
+      variant="default"
+      className={style.removeButton}
+    >
+      <TrashIcon></TrashIcon>
     </Button>
   );
 };

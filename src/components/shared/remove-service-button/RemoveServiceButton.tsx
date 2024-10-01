@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import style from "./RemoveServiceButton.module.scss";
 import { useToast } from "@/hooks/use-toast";
+import { Trash2Icon } from "lucide-react";
 
 interface RemoveServiceButtonProps {
   serviceId: number;
@@ -42,7 +43,7 @@ const RemoveServiceButton: React.FC<RemoveServiceButtonProps> = ({
       variant="outline"
       className={style.removeButton}
     >
-      Cancelar
+      <Trash2Icon />
     </Button>
   );
 };

@@ -15,7 +15,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Service } from "@/types/service";
 import { useToast } from "@/hooks/use-toast";
-// import style from "./EditServiceSheet.module.scss";
+import { Edit2Icon } from "lucide-react";
+import style from "./EditServiceSheet.module.scss";
 
 interface EditServiceSheetProps {
   service: Service;
@@ -85,7 +86,12 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button onClick={() => console.log("Triggou!")}>Editar</Button>
+        <Button
+          onClick={() => console.log("Triggou!")}
+          className={style.editEmployeeButton}
+        >
+          <Edit2Icon />
+        </Button>
       </SheetTrigger>
 
       <SheetContent side={"left"}>

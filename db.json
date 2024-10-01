@@ -100,7 +100,7 @@
       "id": "2"
     },
     {
-      "status": "Cancelado",
+      "status": "Arquivado",
       "id": "3"
     },
     {
@@ -112,7 +112,7 @@
       "totalValue": 123,
       "quantityItems": 123,
       "boxCode": "123",
-      "status": "Concluído",
+      "status": "Arquivado",
       "address": "Teste 1",
       "employeeId": 1,
       "startedAt": "2024-09-30T00:51:39.619Z",
@@ -122,19 +122,19 @@
     },
     {
       "id": "6",
-      "companyName": "teste tempo",
-      "resale": "teste tempo",
-      "attendanceNumber": 321,
-      "sellerName": "tempo",
+      "companyName": "nome teste",
+      "resale": "revenda teste",
+      "attendanceNumber": 654,
+      "sellerName": "vendedor teste",
       "totalValue": 40,
-      "quantityItems": 2,
+      "quantityItems": 5,
       "boxCode": 42,
-      "status": "Arquivado",
+      "status": "Concluído",
       "address": "endereço tempo",
-      "employeeId": 2,
-      "startedAt": "2024-09-30T00:51:44.139Z",
-      "finishedAt": "2024-09-30T00:53:03.283Z",
-      "tripDuration": "00:01:18"
+      "employeeId": 6,
+      "startedAt": "2024-10-01T02:49:44.190Z",
+      "finishedAt": "2024-10-01T03:33:43.211Z",
+      "tripDuration": "00:43:58"
     },
     {
       "id": "7",
@@ -163,7 +163,20 @@
       "employeeId": 1,
       "startedAt": "2024-09-30T02:52:44.643Z",
       "finishedAt": "2024-09-30T03:27:15.751Z",
-      "tripDuration": "00:34:31"
+      "tripDuration": "00:34:31",
+      "observation": "observação arquivo teste"
+    },
+    {
+      "id": "6",
+      "companyName": "nome teste",
+      "resale": "revenda teste",
+      "attendanceNumber": 654,
+      "sellerName": "vendedor teste",
+      "totalValue": 40,
+      "quantityItems": 5,
+      "boxCode": 42,
+      "status": "Aguardando",
+      "address": "endereço tempo"
     }
   ]
 }

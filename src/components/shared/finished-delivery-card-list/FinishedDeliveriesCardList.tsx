@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -18,17 +18,23 @@ import {
 import styles from "./finishedDeliveriesCardList.module.scss";
 import ObservationSheet from "../observation-sheet/ObservationSheet";
 import { useToast } from "@/hooks/use-toast";
+import Pagination from "../pagination/Pagination";
 
 const FinishedDeliveriesCardList: React.FC = () => {
   const { globalServices, setGlobalServices, globalEmployees } =
     useDeliveryContext();
   const { toast } = useToast();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const deliveriesPerPage = 10; // Define quantos cards exibir por página
+
+  // Filtra as entregas concluídas ou canceladas
   const finishedDeliveries = globalServices.filter(
     (service) =>
       service.status === "Concluído" || service.status === "Cancelado"
   );
 
+  // Função para arquivar a entrega
   const handleArchiveDelivery = async (deliveryId: number) => {
     try {
       const archivedServices = globalServices.map((service) =>
@@ -74,62 +80,83 @@ const FinishedDeliveriesCardList: React.FC = () => {
     return employee ? employee.transportType : null;
   };
 
-  return (
-    <div className={styles.gridContainer}>
-      {finishedDeliveries.map((delivery) => (
-        <HoverCard key={delivery.id}>
-          <HoverCardTrigger>
-            <Card
-              className={
-                delivery.status === "Concluído"
-                  ? styles.finishedCard
-                  : styles.canceledCard
-              }
-            >
-              <CardHeader>
-                <CardTitle className={styles.cardHeader}>
-                  <p>Atendimento #{delivery.attendanceNumber}</p>
-                  <ObservationSheet service={delivery} />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
-                <p>Endereço: {delivery.address}</p>
-              </CardContent>
-              <CardFooter className={styles.cardFooter}>
-                <Button
-                  onClick={() => handleArchiveDelivery(Number(delivery.id))}
-                  variant="destructive"
-                  className={styles.finishDeliveryButton}
-                >
-                  Arquivar Entrega
-                </Button>
-                {delivery.employeeId &&
-                  (getTransportType(delivery.employeeId) === "Carro" ? (
-                    <CarIcon />
-                  ) : (
-                    <BikeIcon />
-                  ))}
-              </CardFooter>
-            </Card>
-          </HoverCardTrigger>
-          <HoverCardContent className={styles.hoverCardContent}>
-            <h2>Detalhes da entrega:</h2>
-            <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
-            <p>Endereço: {delivery.address}</p>
-            <p>Quantidade: {delivery.quantityItems}</p>
-            <p>Valor total: R$ {delivery.totalValue}</p>
+  // Função para determinar os itens por página
+  const indexOfLastDelivery = currentPage * deliveriesPerPage;
+  const indexOfFirstDelivery = indexOfLastDelivery - deliveriesPerPage;
+  const currentDeliveries = finishedDeliveries.slice(
+    indexOfFirstDelivery,
+    indexOfLastDelivery
+  );
 
-            <div>
-              <p>Situação: {delivery.status}</p>
-              <p>Duração da viagem: {delivery.tripDuration} </p>
-            </div>
-            <p>
-              Observação: {delivery.observation ? delivery.observation : "N/A"}
-            </p>
-          </HoverCardContent>
-        </HoverCard>
-      ))}
+  return (
+    <div className={styles.mainContainer}>
+      <div className={styles.gridContainer}>
+        {currentDeliveries.map((delivery) => (
+          <HoverCard key={delivery.id}>
+            <HoverCardTrigger>
+              <Card
+                className={
+                  delivery.status === "Concluído"
+                    ? styles.finishedCard
+                    : styles.canceledCard
+                }
+              >
+                <CardHeader>
+                  <CardTitle className={styles.cardHeader}>
+                    <p>Atendimento #{delivery.attendanceNumber}</p>
+                    <ObservationSheet service={delivery} />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
+                  <p>Endereço: {delivery.address}</p>
+                </CardContent>
+                <CardFooter className={styles.cardFooter}>
+                  <Button
+                    onClick={() => handleArchiveDelivery(Number(delivery.id))}
+                    variant="destructive"
+                    className={styles.finishDeliveryButton}
+                  >
+                    Arquivar Entrega
+                  </Button>
+                  {delivery.employeeId &&
+                    (getTransportType(delivery.employeeId) === "Carro" ? (
+                      <CarIcon />
+                    ) : (
+                      <BikeIcon />
+                    ))}
+                </CardFooter>
+              </Card>
+            </HoverCardTrigger>
+            <HoverCardContent className={styles.hoverCardContent}>
+              <h2>Detalhes da entrega:</h2>
+              <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
+              <p>Endereço: {delivery.address}</p>
+              <p>Quantidade: {delivery.quantityItems}</p>
+              <p>Valor total: R$ {delivery.totalValue}</p>
+
+              <div>
+                <p>
+                  Situação:
+                  <span className={styles.cardStatus}>{delivery.status}</span>
+                </p>
+                <p>Duração da viagem: {delivery.tripDuration} </p>
+              </div>
+              <p>
+                Observação:{" "}
+                {delivery.observation ? delivery.observation : "N/A"}
+              </p>
+            </HoverCardContent>
+          </HoverCard>
+        ))}
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalItems={finishedDeliveries.length}
+        itemsPerPage={deliveriesPerPage}
+        onPageChange={(pageNumber) => setCurrentPage(pageNumber)}
+        paginate={(pageNumber) => setCurrentPage(pageNumber)}
+      />
     </div>
   );
 };
