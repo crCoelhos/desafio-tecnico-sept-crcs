@@ -14,6 +14,7 @@ interface DeliveryContextProps {
   setGlobalServices: React.Dispatch<React.SetStateAction<Service[]>>;
   globalEmployees: Employee[];
   setGlobalEmployees: React.Dispatch<React.SetStateAction<Employee[]>>;
+  updateService: (service: Service) => void;
 }
 
 const DeliveryContext = createContext<DeliveryContextProps | undefined>(
@@ -66,6 +67,13 @@ export const DeliveryProvider = ({ children }: { children: ReactNode }) => {
         setGlobalServices,
         globalEmployees,
         setGlobalEmployees,
+        updateService: (updatedService: Service) => {
+          setGlobalServices((services) =>
+            services.map((service) =>
+              service.id === updatedService.id ? updatedService : service
+            )
+          );
+        },
       }}
     >
       {children}

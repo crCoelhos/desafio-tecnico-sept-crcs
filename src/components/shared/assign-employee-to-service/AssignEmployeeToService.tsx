@@ -11,10 +11,10 @@ import {
 import { Label } from "@/components/ui/label";
 import { Employee } from "@/types/employee";
 import { Service } from "@/types/service";
-
 import style from "./AssignEmployeeToService.module.scss";
 import { useToast } from "@/hooks/use-toast";
 import { PackageCheckIcon } from "lucide-react";
+import { useDeliveryContext } from "@/context/DeliveryContext";
 
 interface AssignEmployeeToServiceSheetProps {
   service: Service;
@@ -29,6 +29,9 @@ const AssignEmployeeToServiceSheet: React.FC<
     null
   );
   const { toast } = useToast();
+  const { updateService } = useDeliveryContext() as ReturnType<
+    typeof useDeliveryContext
+  >;
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -62,9 +65,10 @@ const AssignEmployeeToServiceSheet: React.FC<
         updatedService
       );
 
-      console.log(response);
-
       const updatedServiceFromResponse = response.data as Service;
+
+      updateService(updatedServiceFromResponse);
+
       onUpdate(updatedServiceFromResponse);
 
       toast({
