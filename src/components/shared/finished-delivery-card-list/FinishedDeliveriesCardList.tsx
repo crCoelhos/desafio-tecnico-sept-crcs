@@ -26,15 +26,13 @@ const FinishedDeliveriesCardList: React.FC = () => {
   const { toast } = useToast();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const deliveriesPerPage = 10; // Define quantos cards exibir por página
+  const deliveriesPerPage = 6;
 
-  // Filtra as entregas concluídas ou canceladas
   const finishedDeliveries = globalServices.filter(
     (service) =>
       service.status === "Concluído" || service.status === "Cancelado"
   );
 
-  // Função para arquivar a entrega
   const handleArchiveDelivery = async (deliveryId: number) => {
     try {
       const archivedServices = globalServices.map((service) =>
@@ -71,16 +69,15 @@ const FinishedDeliveriesCardList: React.FC = () => {
   };
 
   const getEmployeeName = (employeeId: number | undefined) => {
-    const employee = globalEmployees.find((emp) => emp.id == employeeId);
+    const employee = globalEmployees.find((emp) => emp.id === employeeId);
     return employee ? employee.name : "Entregador não designado";
   };
 
   const getTransportType = (employeeId: number) => {
-    const employee = globalEmployees.find((emp) => emp.id == employeeId);
+    const employee = globalEmployees.find((emp) => emp.id === employeeId);
     return employee ? employee.transportType : null;
   };
 
-  // Função para determinar os itens por página
   const indexOfLastDelivery = currentPage * deliveriesPerPage;
   const indexOfFirstDelivery = indexOfLastDelivery - deliveriesPerPage;
   const currentDeliveries = finishedDeliveries.slice(
@@ -110,6 +107,18 @@ const FinishedDeliveriesCardList: React.FC = () => {
                 <CardContent>
                   <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
                   <p>Endereço: {delivery.address}</p>
+                  <p>Itens:</p>
+                  <ul>
+                    {delivery.items && delivery.items.length > 0 ? (
+                      delivery.items.map((item) => (
+                        <li key={item.id}>
+                          {item.name} - Quantidade: {item.quantity}
+                        </li>
+                      ))
+                    ) : (
+                      <li>Nenhum item disponível</li>
+                    )}
+                  </ul>
                 </CardContent>
                 <CardFooter className={styles.cardFooter}>
                   <Button
@@ -132,9 +141,18 @@ const FinishedDeliveriesCardList: React.FC = () => {
               <h2>Detalhes da entrega:</h2>
               <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
               <p>Endereço: {delivery.address}</p>
-              <p>Quantidade: {delivery.quantityItems}</p>
-              <p>Valor total: R$ {delivery.totalValue}</p>
-
+              <p>Itens:</p>
+              <ul>
+                {delivery.items && delivery.items.length > 0 ? (
+                  delivery.items.map((item) => (
+                    <li key={item.id}>
+                      {item.name} - Quantidade: {item.quantity}
+                    </li>
+                  ))
+                ) : (
+                  <li>Nenhum item disponível</li>
+                )}
+              </ul>
               <div>
                 <p>
                   Situação:

@@ -20,7 +20,7 @@ const ObservationDescriptionCard: React.FC<ObservationDescriptionCardProps> = (
           </span>
         </p>
         <p>
-          Revendeda:{" "}
+          Revendedora:{" "}
           <span className={style.serviceDescription}>
             {props.service.resale}
           </span>
@@ -34,21 +34,39 @@ const ObservationDescriptionCard: React.FC<ObservationDescriptionCardProps> = (
         <p>
           Entregador:{" "}
           <span className={style.serviceDescription}>
-            {props.service.deliveryPerson
-              ? props.service.deliveryPerson.name
+            {props.service.employeeId
+              ? props.service.employeeId // Assumindo que você vai buscar o nome do entregador baseado no ID do funcionário
               : "N/A"}
           </span>
         </p>
+
+        <p>Itens da entrega:</p>
+        <ul>
+          {props.service.items.map((item) => (
+            <li key={item.id}>
+              <span className={style.serviceDescription}>
+                {item.name} - {item.quantity}x - R$ {item.value.toFixed(2)}
+              </span>
+            </li>
+          ))}
+        </ul>
+
         <p>
-          Quantidade de itens:{" "}
+          Quantidade total de itens:{" "}
           <span className={style.serviceDescription}>
-            {props.service.quantityItems}
+            {props.service.items.reduce(
+              (total, item) => total + item.quantity,
+              0
+            )}
           </span>
         </p>
         <p>
           Valor total:{" "}
           <span className={style.serviceDescription}>
-            R$ {props.service.totalValue}
+            R${" "}
+            {props.service.items
+              .reduce((total, item) => total + item.value * item.quantity, 0)
+              .toFixed(2)}
           </span>
         </p>
         <p>
@@ -58,15 +76,19 @@ const ObservationDescriptionCard: React.FC<ObservationDescriptionCardProps> = (
           </span>
         </p>
         <p>
-          Inicio da entrega:{" "}
+          Início da entrega:{" "}
           <span className={style.serviceDescription}>
-            {props.service.startedAt?.toLocaleString()}
+            {props.service.startedAt
+              ? new Date(props.service.startedAt).toLocaleString()
+              : "N/A"}
           </span>
         </p>
         <p>
           Fim da entrega:{" "}
           <span className={style.serviceDescription}>
-            {props.service.finishedAt?.toLocaleString()}
+            {props.service.finishedAt
+              ? new Date(props.service.finishedAt).toLocaleString()
+              : "N/A"}
           </span>
         </p>
         <p>

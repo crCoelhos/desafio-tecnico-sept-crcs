@@ -22,14 +22,16 @@ interface ObservationSheetProps {
   service: Service;
 }
 
-const ObservationSheet: React.FC<ObservationSheetProps> = (props) => {
-  const [observation, setObservation] = useState<string>("");
+const ObservationSheet: React.FC<ObservationSheetProps> = ({ service }) => {
+  const [observation, setObservation] = useState<string>(
+    service.observation || ""
+  );
 
   const handleSubmitObservation = async () => {
     try {
-      const updatedService = { ...props.service, observation };
+      const updatedService = { ...service, observation };
       await axios.put(
-        `http://localhost:5000/services/${props.service.id}`,
+        `http://localhost:5000/services/${service.id}`,
         updatedService
       );
       console.log("Observação salva!");
@@ -37,6 +39,7 @@ const ObservationSheet: React.FC<ObservationSheetProps> = (props) => {
       console.error("Erro ao salvar observação:", error);
     }
   };
+
   return (
     <Dialog>
       <Sheet>
@@ -50,9 +53,9 @@ const ObservationSheet: React.FC<ObservationSheetProps> = (props) => {
               Adicione uma observação sobre a entrega:
               <span className={style.sheetHeaderDescription}>
                 {" "}
-                {props.service.attendanceNumber}.
+                {service.attendanceNumber}.
               </span>
-              <ObservationDescriptionCard service={props.service} />
+              <ObservationDescriptionCard service={service} />
             </SheetDescription>
           </SheetHeader>
 
@@ -65,10 +68,11 @@ const ObservationSheet: React.FC<ObservationSheetProps> = (props) => {
             />
           </SheetDescription>
           <SheetFooter>
+            <Button type="button" onClick={handleSubmitObservation}>
+              Salvar
+            </Button>
             <SheetClose asChild>
-              <Button type="submit" onClick={handleSubmitObservation}>
-                Salvar
-              </Button>
+              <Button variant="secondary">Fechar</Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>

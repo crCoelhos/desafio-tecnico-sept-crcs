@@ -15,10 +15,10 @@ export interface Service {
     | "Arquivado";
   startedAt?: Date;
   finishedAt?: Date;
-  canceledAt?: Date;
   tripDuration?: string;
   observation?: string;
   items: {
+    id?: string | number;
     name: string;
     quantity: number;
     value: number;

@@ -1,38 +1,43 @@
 {
   "employees": [
     {
-      "id": "1",
-      "name": "João Silva",
-      "CPF": "12345678901",
-      "transportType": "Carro",
+      "id": "0",
+      "name": "Leticia",
+      "CPF": "12345678911",
+      "transportType": "Moto",
       "retailName": "Loja A"
     },
     {
-      "id": "2",
-      "name": "Maria Souza",
-      "CPF": "98765432109",
+      "id": "1",
+      "name": "Rogério",
+      "CPF": "12345678912",
       "transportType": "Moto",
       "retailName": "Loja B"
     },
     {
+      "id": "2",
+      "name": "Gerlâne",
+      "CPF": "12345678913",
+      "transportType": "Carro",
+      "retailName": "Loja C"
+    },
+    {
       "id": "3",
-      "name": "Carlos Lima",
-      "CPF": "11122233344",
+      "name": "Sérgio",
+      "CPF": "12345678914",
       "transportType": "Carro",
       "retailName": "Loja C"
     }
   ],
   "services": [
     {
-      "id": "1",
+      "id": "0",
       "companyName": "Empresa A",
       "resale": "Revenda A",
       "attendanceNumber": 101,
       "sellerName": "Vendedor A",
-      "totalValue": 150.5,
-      "quantityItems": 10,
       "boxCode": 1001,
-      "status": "Aguardando",
+      "status": "Concluído",
       "address": "Rua A, Bairro A",
       "items": [
         {
@@ -47,18 +52,21 @@
           "quantity": 1,
           "value": 100
         }
-      ]
+      ],
+      "employeeId": 2,
+      "startedAt": "2024-10-01T10:00:00Z",
+      "finishedAt": "2024-10-01T10:05:00Z",
+      "tripDuration": "00:05:00",
+      "observation": "Entrega realizada com sucesso."
     },
     {
-      "id": "2",
+      "id": "1",
       "companyName": "Empresa B",
       "resale": "Revenda B",
       "attendanceNumber": 102,
       "sellerName": "Vendedor B",
-      "totalValue": 300.75,
-      "quantityItems": 20,
       "boxCode": 1002,
-      "status": "Aguardando",
+      "status": "Concluído",
       "address": "Rua B, Bairro B",
       "items": [
         {
@@ -67,18 +75,21 @@
           "quantity": 1,
           "value": 50
         }
-      ]
+      ],
+      "employeeId": 1,
+      "startedAt": "2024-10-01T10:10:00Z",
+      "finishedAt": "2024-10-01T10:15:00Z",
+      "tripDuration": "00:05:00",
+      "observation": "Cliente satisfeito com a entrega."
     },
     {
-      "id": "3",
+      "id": "2",
       "companyName": "Empresa C",
       "resale": "Revenda C",
       "attendanceNumber": 103,
       "sellerName": "Vendedor C",
-      "totalValue": 250,
-      "quantityItems": 15,
       "boxCode": 1003,
-      "status": "Em Andamento",
+      "status": "Arquivado",
       "address": "Rua C, Bairro C",
       "employeeId": 1,
       "items": [
@@ -89,18 +100,19 @@
           "value": 10
         }
       ],
-      "startedAt": "2024-10-01T08:00:00Z"
+      "startedAt": "2024-10-01T08:00:00Z",
+      "finishedAt": "2024-10-01T20:04:33.683Z",
+      "tripDuration": "09:04:29",
+      "observation": "Produto entregue em perfeitas condições."
     },
     {
-      "id": "4",
+      "id": "3",
       "companyName": "Empresa D",
       "resale": "Revenda D",
       "attendanceNumber": 104,
       "sellerName": "Vendedor D",
-      "totalValue": 120,
-      "quantityItems": 8,
       "boxCode": 1004,
-      "status": "Em Andamento",
+      "status": "Arquivado",
       "address": "Rua D, Bairro D",
       "employeeId": 2,
       "items": [
@@ -111,115 +123,73 @@
           "value": 50
         }
       ],
-      "startedAt": "2024-10-01T09:00:00Z"
+      "startedAt": "2024-10-01T09:00:00Z",
+      "finishedAt": "2024-10-01T20:04:33.196Z",
+      "tripDuration": "09:04:29",
+      "observation": "Entrega sem problemas."
     },
     {
-      "id": "5",
+      "id": "4",
       "companyName": "Empresa E",
       "resale": "Revenda E",
       "attendanceNumber": 105,
       "sellerName": "Vendedor E",
-      "totalValue": 400,
-      "quantityItems": 25,
       "boxCode": 1005,
-      "status": "Em Andamento",
+      "status": "Arquivado",
       "address": "Rua E, Bairro E",
       "employeeId": 3,
-      "startedAt": "2024-10-01T10:00:00Z"
+      "startedAt": "2024-10-01T10:00:00Z",
+      "finishedAt": "2024-10-01T20:04:34.099Z",
+      "tripDuration": "09:04:29",
+      "observation": "A entrega foi concluída dentro do prazo."
     },
     {
-      "id": "6",
+      "id": "5",
       "companyName": "Empresa F",
       "resale": "Revenda F",
       "attendanceNumber": 106,
       "sellerName": "Vendedor F",
-      "totalValue": 600,
-      "quantityItems": 30,
       "boxCode": 1006,
-      "status": "Em Andamento",
+      "status": "Cancelado",
       "address": "Rua F, Bairro F",
       "employeeId": 1,
-      "startedAt": "2024-10-01T11:00:00Z"
+      "items": [
+        {
+          "id": "1",
+          "name": "Suculenta grande",
+          "quantity": 1,
+          "value": 50
+        }
+      ],
+      "observation": "Cliente não poderá receber a entrega."
+    },
+    {
+      "status": "Cancelado",
+      "id": "6"
     },
     {
       "id": "7",
-      "companyName": "Empresa G",
-      "resale": "Revenda G",
-      "attendanceNumber": 107,
-      "sellerName": "Vendedor G",
-      "totalValue": 80,
-      "quantityItems": 5,
-      "boxCode": 1007,
-      "status": "Arquivado",
-      "address": "Rua G, Bairro G"
-    },
-    {
-      "id": "8",
-      "companyName": "Empresa H",
-      "resale": "Revenda H",
-      "attendanceNumber": 108,
-      "sellerName": "Vendedor H",
-      "totalValue": 200,
-      "quantityItems": 12,
-      "boxCode": 1008,
-      "status": "Arquivado",
-      "address": "Rua H, Bairro H"
-    },
-    {
-      "id": "9",
-      "companyName": "Empresa I",
-      "resale": "Revenda I",
-      "attendanceNumber": 109,
-      "sellerName": "Vendedor I",
-      "totalValue": 500,
-      "quantityItems": 20,
-      "boxCode": 1009,
-      "status": "Cancelado",
-      "address": "Rua I, Bairro I"
-    },
-    {
-      "id": "10",
-      "companyName": "Empresa J",
-      "resale": "Revenda J",
-      "attendanceNumber": 110,
-      "sellerName": "Vendedor J",
-      "totalValue": 750,
-      "quantityItems": 25,
-      "boxCode": 1010,
-      "status": "Cancelado",
-      "address": "Rua J, Bairro J"
-    },
-    {
-      "id": "11",
-      "companyName": "Empresa K",
-      "resale": "Revenda K",
-      "attendanceNumber": 111,
-      "sellerName": "Vendedor K",
-      "totalValue": 1000,
-      "quantityItems": 35,
-      "boxCode": 1011,
-      "status": "Concluído",
-      "address": "Rua K, Bairro K",
-      "employeeId": 2,
-      "startedAt": "2024-09-30T12:00:00Z",
-      "finishedAt": "2024-09-30T13:00:00Z",
-      "tripDuration": "01:00:00"
-    },
-    {
-      "id": "12",
-      "companyName": "Empresa L",
-      "resale": "Revenda L",
-      "attendanceNumber": 112,
-      "sellerName": "Vendedor L",
-      "totalValue": 1500,
-      "quantityItems": 40,
-      "boxCode": 1012,
-      "status": "Concluído",
-      "address": "Rua L, Bairro L",
-      "employeeId": 3,
-      "startedAt": "2024-09-30T14:00:00Z",
-      "finishedAt": "2024-09-30T15:30:00Z",
-      "tripDuration": "01:30:00"
+      "companyName": "Empresa teste 1",
+      "resale": "revenda teste",
+      "attendanceNumber": 576,
+      "sellerName": "Christopher",
+      "totalValue": 0,
+      "quantityItems": 0,
+      "boxCode": 166,
+      "status": "Aguardando",
+      "address": "endereço teste 1",
+      "items": [
+        {
+          "name": "Item 1",
+          "quantity": 1,
+          "value": 50
+        },
+        {
+          "name": "Item 2",
+          "quantity": 5,
+          "value": 10
+        }
+      ]
     }
   ]
 }

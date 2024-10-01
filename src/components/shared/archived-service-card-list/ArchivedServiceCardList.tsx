@@ -107,15 +107,20 @@ const ArchivedServiceCardList: React.FC = () => {
                 <CardContent>
                   <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
                   <p>Endereço: {delivery.address}</p>
+                  <p>Itens:</p>
+                  <ul>
+                    {delivery.items && delivery.items.length > 0 ? (
+                      delivery.items.map((item) => (
+                        <li key={item.id}>
+                          {item.name} - Quantidade: {item.quantity}
+                        </li>
+                      ))
+                    ) : (
+                      <li>Nenhum item disponível</li>
+                    )}
+                  </ul>
                 </CardContent>
                 <CardFooter className={styles.cardFooter}>
-                  {/* <Button
-                    onClick={() => handleArchiveDelivery(Number(delivery.id))}
-                    variant="destructive"
-                    className={styles.finishDeliveryButton}
-                  >
-                    Arquivar Entrega
-                  </Button> */}
                   {delivery.employeeId &&
                     (getTransportType(delivery.employeeId) === "Carro" ? (
                       <CarIcon />
@@ -129,16 +134,22 @@ const ArchivedServiceCardList: React.FC = () => {
               <h2>Detalhes da entrega:</h2>
               <p>Entregador: {getEmployeeName(delivery.employeeId)}</p>
               <p>Endereço: {delivery.address}</p>
-              <p>Quantidade: {delivery.quantityItems}</p>
-              <p>Valor total: R$ {delivery.totalValue}</p>
-
+              <p>Itens:</p>
+              <ul>
+                {delivery.items && delivery.items.length > 0 ? (
+                  delivery.items.map((item) => (
+                    <li key={item.id}>
+                      {item.name} - Quantidade: {item.quantity}
+                    </li>
+                  ))
+                ) : (
+                  <li>Nenhum item disponível</li>
+                )}
+              </ul>
               <div>
                 <p>
-                  {" "}
-                  Situação:{" "}
-                  <span className={styles.cardStatus}>
-                    {delivery.status}
-                  </span>{" "}
+                  Situação:
+                  <span className={styles.cardStatus}>{delivery.status}</span>
                 </p>
                 <p>Duração da viagem: {delivery.tripDuration} </p>
               </div>
