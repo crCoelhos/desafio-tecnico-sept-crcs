@@ -3,7 +3,9 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -118,9 +120,14 @@ const AssignEmployeeToServiceSheet: React.FC<
             ))}
           </select>
         </div>
-        <Button onClick={handleAssignEmployee} className="mt-4">
-          Atribuir Entregador
-        </Button>
+
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button onClick={handleAssignEmployee} className="mt-4">
+              Atribuir Entregador
+            </Button>
+          </SheetClose>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
