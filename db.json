@@ -138,6 +138,14 @@
       "status": "Arquivado",
       "address": "Rua E, Bairro E",
       "employeeId": 3,
+      "items": [
+        {
+          "id": "1",
+          "name": "Suculenta pequena",
+          "quantity": 5,
+          "value": 5
+        }
+      ],
       "startedAt": "2024-10-01T10:00:00Z",
       "finishedAt": "2024-10-01T20:04:34.099Z",
       "tripDuration": "09:04:29",
@@ -166,30 +174,6 @@
     {
       "status": "Cancelado",
       "id": "6"
-    },
-    {
-      "id": "7",
-      "companyName": "Empresa teste 1",
-      "resale": "revenda teste",
-      "attendanceNumber": 576,
-      "sellerName": "Christopher",
-      "totalValue": 0,
-      "quantityItems": 0,
-      "boxCode": 166,
-      "status": "Aguardando",
-      "address": "endereço teste 1",
-      "items": [
-        {
-          "name": "Item 1",
-          "quantity": 1,
-          "value": 50
-        },
-        {
-          "name": "Item 2",
-          "quantity": 5,
-          "value": 10
-        }
-      ]
     }
   ]
 }
