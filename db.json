@@ -170,10 +170,6 @@
         }
       ],
       "observation": "Cliente não poderá receber a entrega."
-    },
-    {
-      "status": "Cancelado",
-      "id": "6"
     }
   ]
 }
