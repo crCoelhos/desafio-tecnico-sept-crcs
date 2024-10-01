@@ -102,7 +102,7 @@ const EmployeeCardTable: React.FC = () => {
             <TableHead>CPF</TableHead>
             <TableHead>Transporte</TableHead>
             <TableHead>Revendedor</TableHead>
-            <TableHead>Ações</TableHead>
+            <TableHead>Ação</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
