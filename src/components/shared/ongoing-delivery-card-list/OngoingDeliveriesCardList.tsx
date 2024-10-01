@@ -15,6 +15,7 @@ import style from "./OngoingDeliveriesCardList.module.scss";
 import { Employee } from "@/types/employee";
 import { useDeliveryContext } from "@/context/DeliveryContext";
 import TimeCounter from "../time-counter/TimeCounter";
+import { useToast } from "@/hooks/use-toast";
 
 const OngoingDeliveriesCardList: React.FC = () => {
   const {
@@ -25,6 +26,7 @@ const OngoingDeliveriesCardList: React.FC = () => {
   } = useDeliveryContext();
 
   const [timeElapsed, setTimeElapsed] = useState<string>("00:00:00");
+  const { toast } = useToast();
 
   const ongoingDeliveries = globalServices.filter(
     (service) => service.status === "Em Andamento"
@@ -78,9 +80,20 @@ const OngoingDeliveriesCardList: React.FC = () => {
           updatedDelivery
         );
         setGlobalServices(updatedServices);
+
+        toast({
+          variant: "success",
+          title: "Entrega FINALIZADA!",
+          description: `A entrega ${updatedDelivery.attendanceNumber} foi arquivada com sucesso.`,
+        });
       }
     } catch (error) {
       console.error("Error completing delivery:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao FINALIZAR Entrega!",
+        description: `Ocorreu um erro ao tentar finalizar a entrega. Tente novamente.`,
+      });
     }
   };
 

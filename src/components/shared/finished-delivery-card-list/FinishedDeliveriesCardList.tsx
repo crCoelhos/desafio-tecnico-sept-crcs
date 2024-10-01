@@ -49,7 +49,7 @@ const FinishedDeliveriesCardList: React.FC = () => {
 
         toast({
           variant: "success",
-          title: "Entrega Arquivada!",
+          title: "Entrega ARQUIVADA!",
           description: `A entrega ${updatedDelivery.attendanceNumber} foi arquivada com sucesso.`,
         });
       }
@@ -57,7 +57,7 @@ const FinishedDeliveriesCardList: React.FC = () => {
       console.error("Error archiving delivery:", error);
       toast({
         variant: "destructive",
-        title: "Erro ao Arquivar Entrega",
+        title: "Erro ao ARQUIVAR Entrega",
         description:
           "Ocorreu um erro ao tentar arquivar a entrega. Tente novamente.",
       });
