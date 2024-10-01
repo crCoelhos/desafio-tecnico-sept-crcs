@@ -96,7 +96,7 @@
       "address": "Avenida 456, Bairro Industrial"
     },
     {
-      "status": "Cancelado",
+      "status": "Arquivado",
       "id": "2"
     },
     {
@@ -129,7 +129,7 @@
       "totalValue": 40,
       "quantityItems": 2,
       "boxCode": 42,
-      "status": "Concluído",
+      "status": "Arquivado",
       "address": "endereço tempo",
       "employeeId": 2,
       "startedAt": "2024-09-30T00:51:44.139Z",
@@ -146,7 +146,7 @@
       "quantityItems": 32,
       "boxCode": 1231231,
       "employeeId": 1,
-      "status": "Cancelado",
+      "status": "Arquivado",
       "address": "endereço teste"
     },
     {
@@ -158,7 +158,7 @@
       "totalValue": 40,
       "quantityItems": 2,
       "boxCode": 42,
-      "status": "Concluído",
+      "status": "Arquivado",
       "address": "endereço tempo",
       "employeeId": 1,
       "startedAt": "2024-09-30T02:52:44.643Z",

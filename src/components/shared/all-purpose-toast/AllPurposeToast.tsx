@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 interface AllPurposeToastProps {
-  variant: "default" | "destructive";
+  variant: "default" | "destructive" | "success" | "warning" | "info" | "error";
   title: string;
   description: string;
 }
