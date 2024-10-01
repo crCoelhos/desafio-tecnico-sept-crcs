@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 interface AllPurposeToastProps {
-  variant: "default" | "destructive";
+  variant: "default" | "destructive" | "error" | "info" | "success" | "warning";
   title: string;
   description: string;
 }
@@ -14,7 +14,6 @@ export function AllPurposeToast(props: AllPurposeToastProps) {
 
   return (
     <Button
-      variant="outline"
       onClick={() => {
         toast({
           variant: props.variant,

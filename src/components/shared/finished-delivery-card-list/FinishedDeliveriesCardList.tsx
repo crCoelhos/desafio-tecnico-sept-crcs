@@ -48,7 +48,7 @@ const FinishedDeliveriesCardList: React.FC = () => {
         setGlobalServices(archivedServices);
 
         toast({
-          variant: "default",
+          variant: "success",
           title: "Entrega Arquivada!",
           description: `A entrega ${updatedDelivery.attendanceNumber} foi arquivada com sucesso.`,
         });
