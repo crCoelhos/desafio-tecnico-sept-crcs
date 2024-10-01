@@ -34,28 +34,24 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
   );
   const [sellerName, setSellerName] = useState(service.sellerName);
 
-  const [totalValue, setTotalValue] = useState(
-    service.items.reduce((acc, item) => acc + item.value, 0)
-  );
-
-  const [quantityItems, setQuantityItems] = useState(
-    service.items.reduce((acc, item) => acc + item.quantity, 0)
-  );
+  const [items, setItems] = useState(service.items || []);
 
   const [boxCode, setBoxCode] = useState(service.boxCode);
-
-  const [items, setItems] = useState(service.items || []);
+  const [totalValue, setTotalValue] = useState(
+    items.reduce((acc, item) => acc + item.quantity * item.value, 0)
+  );
+  const [quantityItems, setQuantityItems] = useState(
+    items.reduce((acc, item) => acc + item.quantity, 0)
+  );
 
   useEffect(() => {
     setCompanyName(service.companyName);
     setResale(service.resale);
     setAttendanceNumber(service.attendanceNumber);
     setSellerName(service.sellerName);
-    setTotalValue(service.items.reduce((acc, item) => acc + item.value, 0));
-    setQuantityItems(
-      service.items.reduce((acc, item) => acc + item.quantity, 0)
-    );
     setBoxCode(service.boxCode);
+    setItems(service.items || []);
+    recalculateTotals();
   }, [service]);
 
   const { toast } = useToast();
@@ -67,14 +63,15 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
       resale,
       attendanceNumber,
       sellerName,
+      boxCode,
+      items,
       totalValue,
       quantityItems,
-      boxCode,
     };
 
     try {
       await axios.put(
-        `http://localhost:5000/employees/${service.id}`,
+        `http://localhost:5000/services/${service.id}`,
         updatedService
       );
 
@@ -85,13 +82,27 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
         description: `Informações de serviço atualizadas com sucesso.`,
       });
     } catch (error) {
-      console.error("Erro ao atualizar o empregado:", error);
+      console.error(`Erro ao atualizar a service: ${service.id}`, error);
       toast({
         variant: "destructive",
         title: "Erro ao ATUALIZAR as informações da OS!",
         description: `Ocorreu um erro ao tentar atualizar as informações da OS. Tente novamente.`,
       });
     }
+  };
+
+  const recalculateTotals = () => {
+    const newTotalValue = items.reduce(
+      (acc, item) => acc + item.quantity * item.value,
+      0
+    );
+    const newQuantityItems = items.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+
+    setTotalValue(newTotalValue);
+    setQuantityItems(newQuantityItems);
   };
 
   const handleAddItem = () => {
@@ -107,6 +118,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
       i === index ? { ...item, [field]: value } : item
     );
     setItems(updatedItems);
+    recalculateTotals();
   };
 
   return (
@@ -245,6 +257,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
                   Total (R$)
                 </Label>
                 <Input
+                  disabled
                   id="totalValue"
                   value={totalValue}
                   onChange={(e) => setTotalValue(Number(e.target.value))}
@@ -256,6 +269,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
                   Qnt
                 </Label>
                 <Input
+                  disabled
                   id="quantityItems"
                   value={quantityItems}
                   onChange={(e) => setQuantityItems(Number(e.target.value))}
