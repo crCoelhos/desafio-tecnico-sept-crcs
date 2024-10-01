@@ -18,13 +18,27 @@ import style from "./ServiceTable.module.scss";
 import RemoveServiceButton from "../remove-service-button/RemoveServiceButton";
 import { useToast } from "@/hooks/use-toast";
 
+const calculateTotalValue = (items?: { quantity: number; value: number }[]) => {
+  if (!items || items.length === 0) {
+    return { totalValue: 0, quantityItems: 0 };
+  }
+
+  return items.reduce(
+    (acc, item) => {
+      acc.quantityItems += item.quantity;
+      acc.totalValue += item.quantity * item.value;
+      return acc;
+    },
+    { totalValue: 0, quantityItems: 0 }
+  );
+};
+
 export const ServiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
   const [services, setServices] = useState<Service[]>([]);
   const { toast } = useToast();
-  // const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {
     const fetchDeliveries = async () => {
@@ -51,14 +65,6 @@ export const ServiceTable: React.FC = () => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       service.sellerName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      service.totalValue
-        ?.toString()
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      service.quantityItems
-        ?.toString()
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
       service.boxCode
         ?.toString()
         .toLowerCase()
@@ -136,55 +142,61 @@ export const ServiceTable: React.FC = () => {
             <TableHead>Revenda</TableHead>
             <TableHead>Nº Atendimento</TableHead>
             <TableHead>Vendedor</TableHead>
-            <TableHead>Total (R$)</TableHead>
-            <TableHead>Qnt</TableHead>
             <TableHead>Código</TableHead>
+            <TableHead>Total Itens</TableHead>
+            <TableHead>Valor Total (R$)</TableHead>
             <TableHead>Ação</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {currentServices.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={8}>Nenhum atendimento encontrado.</TableCell>
+              <TableCell colSpan={9}>Nenhum atendimento encontrado.</TableCell>
             </TableRow>
           ) : (
-            currentServices.map((service) => (
-              <TableRow key={service.id}>
-                <TableCell>{service.id}</TableCell>
-                <TableCell>{service.companyName}</TableCell>
-                <TableCell>{service.resale}</TableCell>
-                <TableCell>{service.attendanceNumber}</TableCell>
-                <TableCell>{service.sellerName}</TableCell>
-                <TableCell>{service.totalValue}</TableCell>
-                <TableCell>{service.quantityItems}</TableCell>
-                <TableCell>{service.boxCode}</TableCell>
-                <TableCell>
-                  <div className={style.ActionButtons}>
-                    <div className={style.firstActionButtonsRow}>
-                      <EditServiceSheet
+            currentServices.map((service) => {
+              const { totalValue, quantityItems } = calculateTotalValue(
+                service.items
+              );
+
+              return (
+                <TableRow key={service.id}>
+                  <TableCell>{service.id}</TableCell>
+                  <TableCell>{service.companyName}</TableCell>
+                  <TableCell>{service.resale}</TableCell>
+                  <TableCell>{service.attendanceNumber}</TableCell>
+                  <TableCell>{service.sellerName}</TableCell>
+                  <TableCell>{service.boxCode}</TableCell>
+                  <TableCell>{quantityItems}</TableCell>
+                  <TableCell>{totalValue.toFixed(2)}</TableCell>
+                  <TableCell>
+                    <div className={style.ActionButtons}>
+                      <div className={style.firstActionButtonsRow}>
+                        <EditServiceSheet
+                          service={service}
+                          onUpdate={handleUpdateService}
+                        />
+                        <RemoveServiceButton
+                          serviceId={Number(service.id)}
+                          onUpdate={(id) =>
+                            setServices(
+                              services.filter(
+                                (service) => Number(service.id) !== id
+                              )
+                            )
+                          }
+                        />
+                      </div>
+
+                      <AssignEmployeeToServiceSheet
                         service={service}
                         onUpdate={handleUpdateService}
                       />
-                      <RemoveServiceButton
-                        serviceId={Number(service.id)}
-                        onUpdate={(id) =>
-                          setServices(
-                            services.filter(
-                              (service) => Number(service.id) !== id
-                            )
-                          )
-                        }
-                      />
                     </div>
-
-                    <AssignEmployeeToServiceSheet
-                      service={service}
-                      onUpdate={handleUpdateService}
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))
+                  </TableCell>
+                </TableRow>
+              );
+            })
           )}
         </TableBody>
       </Table>

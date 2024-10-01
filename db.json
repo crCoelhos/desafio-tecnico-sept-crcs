@@ -33,7 +33,21 @@
       "quantityItems": 10,
       "boxCode": 1001,
       "status": "Aguardando",
-      "address": "Rua A, Bairro A"
+      "address": "Rua A, Bairro A",
+      "items": [
+        {
+          "id": "1",
+          "name": "Vaso de Planta",
+          "quantity": 5,
+          "value": 50
+        },
+        {
+          "id": "2",
+          "name": "Substrato",
+          "quantity": 1,
+          "value": 100
+        }
+      ]
     },
     {
       "id": "2",
@@ -45,7 +59,15 @@
       "quantityItems": 20,
       "boxCode": 1002,
       "status": "Aguardando",
-      "address": "Rua B, Bairro B"
+      "address": "Rua B, Bairro B",
+      "items": [
+        {
+          "id": "1",
+          "name": "Enraizador",
+          "quantity": 1,
+          "value": 50
+        }
+      ]
     },
     {
       "id": "3",
@@ -59,6 +81,14 @@
       "status": "Em Andamento",
       "address": "Rua C, Bairro C",
       "employeeId": 1,
+      "items": [
+        {
+          "id": "1",
+          "name": "Suculenta média",
+          "quantity": 1,
+          "value": 10
+        }
+      ],
       "startedAt": "2024-10-01T08:00:00Z"
     },
     {
@@ -73,6 +103,14 @@
       "status": "Em Andamento",
       "address": "Rua D, Bairro D",
       "employeeId": 2,
+      "items": [
+        {
+          "id": "1",
+          "name": "Suculenta grande",
+          "quantity": 1,
+          "value": 50
+        }
+      ],
       "startedAt": "2024-10-01T09:00:00Z"
     },
     {

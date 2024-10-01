@@ -1,14 +1,9 @@
-import { Employee } from "./employee";
-
 export interface Service {
   id: string;
   companyName: string;
   resale: string;
   attendanceNumber?: number;
-  deliveryPerson?: Employee;
   sellerName: string;
-  totalValue?: number;
-  quantityItems?: number;
   boxCode?: number | undefined;
   address: string;
   employeeId?: number;
@@ -23,4 +18,10 @@ export interface Service {
   canceledAt?: Date;
   tripDuration?: string;
   observation?: string;
+  items: {
+    name: string;
+    quantity: number;
+    value: number;
+    itemObservation?: string;
+  }[];
 }

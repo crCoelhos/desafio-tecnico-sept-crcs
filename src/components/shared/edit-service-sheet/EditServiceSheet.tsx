@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Service } from "@/types/service";
 import { useToast } from "@/hooks/use-toast";
-import { CheckIcon, Edit2Icon } from "lucide-react";
+import { CheckIcon, Edit2Icon, PlusIcon } from "lucide-react";
 import style from "./EditServiceSheet.module.scss";
 
 interface EditServiceSheetProps {
@@ -33,17 +33,28 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
     service.attendanceNumber
   );
   const [sellerName, setSellerName] = useState(service.sellerName);
-  const [totalValue, setTotalValue] = useState(service.totalValue);
-  const [quantityItems, setQuantityItems] = useState(service.quantityItems);
+
+  const [totalValue, setTotalValue] = useState(
+    service.items.reduce((acc, item) => acc + item.value, 0)
+  );
+
+  const [quantityItems, setQuantityItems] = useState(
+    service.items.reduce((acc, item) => acc + item.quantity, 0)
+  );
+
   const [boxCode, setBoxCode] = useState(service.boxCode);
+
+  const [items, setItems] = useState(service.items || []);
 
   useEffect(() => {
     setCompanyName(service.companyName);
     setResale(service.resale);
     setAttendanceNumber(service.attendanceNumber);
     setSellerName(service.sellerName);
-    setTotalValue(service.totalValue);
-    setQuantityItems(service.quantityItems);
+    setTotalValue(service.items.reduce((acc, item) => acc + item.value, 0));
+    setQuantityItems(
+      service.items.reduce((acc, item) => acc + item.quantity, 0)
+    );
     setBoxCode(service.boxCode);
   }, [service]);
 
@@ -83,6 +94,21 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
     }
   };
 
+  const handleAddItem = () => {
+    setItems([...items, { name: "", quantity: 0, value: 0 }]);
+  };
+
+  const handleItemChange = (
+    index: number,
+    field: string,
+    value: string | number
+  ) => {
+    const updatedItems = items.map((item, i) =>
+      i === index ? { ...item, [field]: value } : item
+    );
+    setItems(updatedItems);
+  };
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -103,83 +129,141 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="companyName" className="text-right">
-              Empresa
-            </Label>
-            <Input
-              id="companyName"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="resale" className="text-right">
-              Revenda
-            </Label>
-            <Input
-              id="resale"
-              value={resale}
-              onChange={(e) => setResale(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="attendanceNumber" className="text-right">
-              Número do Atendimento
-            </Label>
-            <Input
-              id="attendanceNumber"
-              value={attendanceNumber}
-              onChange={(e) => setAttendanceNumber(Number(e.target.value))}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="sellerName" className="text-right">
-              Vendedor
-            </Label>
-            <Input
-              id="sellerName"
-              value={sellerName}
-              onChange={(e) => setSellerName(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="totalValue" className="text-right">
-              Total (R$)
-            </Label>
-            <Input
-              id="totalValue"
-              value={totalValue}
-              onChange={(e) => setTotalValue(Number(e.target.value))}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="quantityItems" className="text-right">
-              Quantidade de itens
-            </Label>
-            <Input
-              id="quantityItems"
-              value={quantityItems}
-              onChange={(e) => setQuantityItems(Number(e.target.value))}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="boxCode" className="text-right">
-              Código da caixa
-            </Label>
-            <Input
-              id="boxCode"
-              value={boxCode}
-              onChange={(e) => setBoxCode(Number(e.target.value))}
-              className="col-span-3"
-            />
-          </div>
+          <fieldset className="border p-4 mt-4">
+            <legend className="text-lg font-semibold">Dados da Entrega</legend>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="companyName" className="text-right">
+                Empresa
+              </Label>
+              <Input
+                id="companyName"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="resale" className="text-right">
+                Revenda
+              </Label>
+              <Input
+                id="resale"
+                value={resale}
+                onChange={(e) => setResale(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="attendanceNumber" className="text-right">
+                Número do Atendimento
+              </Label>
+              <Input
+                id="attendanceNumber"
+                value={attendanceNumber}
+                onChange={(e) => setAttendanceNumber(Number(e.target.value))}
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="sellerName" className="text-right">
+                Vendedor
+              </Label>
+              <Input
+                id="sellerName"
+                value={sellerName}
+                onChange={(e) => setSellerName(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="boxCode" className="text-right">
+                Código da caixa
+              </Label>
+              <Input
+                id="boxCode"
+                value={boxCode}
+                onChange={(e) => setBoxCode(Number(e.target.value))}
+                className="col-span-3"
+              />
+            </div>
+          </fieldset>
+
+          <fieldset className="border p-4 mt-4">
+            <legend className="text-lg font-semibold">
+              Itens a serem entregues
+            </legend>
+
+            <div className="space-y-4">
+              <h4>Itens</h4>
+              {items.map((item, index) => (
+                <div
+                  key={index}
+                  className="grid grid-cols-4 items-center gap-4"
+                >
+                  <Input
+                    placeholder="Nome do Item"
+                    value={item.name}
+                    onChange={(e) =>
+                      handleItemChange(index, "name", e.target.value)
+                    }
+                    className="col-span-2"
+                  />
+                  <Input
+                    placeholder="Quantidade"
+                    value={item.quantity}
+                    type="number"
+                    onChange={(e) =>
+                      handleItemChange(
+                        index,
+                        "quantity",
+                        Number(e.target.value)
+                      )
+                    }
+                    className="col-span-1"
+                  />
+                  <Input
+                    placeholder="Valor"
+                    value={item.value}
+                    type="number"
+                    onChange={(e) =>
+                      handleItemChange(index, "value", Number(e.target.value))
+                    }
+                    className="col-span-1"
+                  />
+                </div>
+              ))}
+              <Button type="button" onClick={handleAddItem}>
+                Adicionar Item <PlusIcon />
+              </Button>
+            </div>
+
+            <fieldset className="border p-4 mt-4">
+              <legend className="text-lg font-semibold">Total</legend>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="totalValue" className="text-right">
+                  Total (R$)
+                </Label>
+                <Input
+                  id="totalValue"
+                  value={totalValue}
+                  onChange={(e) => setTotalValue(Number(e.target.value))}
+                  className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 m-2 items-center gap-4">
+                <Label htmlFor="quantityItems" className="text-right">
+                  Qnt
+                </Label>
+                <Input
+                  id="quantityItems"
+                  value={quantityItems}
+                  onChange={(e) => setQuantityItems(Number(e.target.value))}
+                  className="col-span-3"
+                />
+              </div>
+            </fieldset>
+          </fieldset>
         </div>
         <SheetFooter>
           <SheetClose asChild>
