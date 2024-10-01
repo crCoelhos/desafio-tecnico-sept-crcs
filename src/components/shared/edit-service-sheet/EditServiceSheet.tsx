@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Service } from "@/types/service";
 import { useToast } from "@/hooks/use-toast";
-import { Edit2Icon } from "lucide-react";
+import { CheckIcon, Edit2Icon } from "lucide-react";
 import style from "./EditServiceSheet.module.scss";
 
 interface EditServiceSheetProps {
@@ -185,6 +185,7 @@ const EditServiceSheet: React.FC<EditServiceSheetProps> = ({
           <SheetClose asChild>
             <Button type="button" onClick={handleUpdate}>
               Salvar alterações
+              <CheckIcon />
             </Button>
           </SheetClose>
         </SheetFooter>

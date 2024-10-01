@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Employee } from "@/types/employee";
-import { Edit2Icon } from "lucide-react";
+import { CheckIcon, Edit2Icon } from "lucide-react";
 import style from "./EditEmployeeSheet.module.scss";
 import { useToast } from "@/hooks/use-toast";
 
@@ -136,6 +136,7 @@ const EditEmployeeSheet: React.FC<EditEmployeeSheetProps> = ({
           <SheetClose asChild>
             <Button type="button" onClick={handleUpdate}>
               Salvar alterações
+              <CheckIcon />
             </Button>
           </SheetClose>
         </SheetFooter>

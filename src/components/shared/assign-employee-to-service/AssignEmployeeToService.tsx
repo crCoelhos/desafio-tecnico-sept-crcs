@@ -14,6 +14,7 @@ import { Service } from "@/types/service";
 
 import style from "./AssignEmployeeToService.module.scss";
 import { useToast } from "@/hooks/use-toast";
+import { PackageCheckIcon } from "lucide-react";
 
 interface AssignEmployeeToServiceSheetProps {
   service: Service;
@@ -85,6 +86,7 @@ const AssignEmployeeToServiceSheet: React.FC<
     <Sheet>
       <SheetTrigger asChild>
         <Button variant={"outline"} className={style.assignButton}>
+          <PackageCheckIcon />
           Designar
         </Button>
       </SheetTrigger>

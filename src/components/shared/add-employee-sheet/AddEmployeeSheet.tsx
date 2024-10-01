@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Employee } from "../../../types/employee";
 import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
+import { CheckIcon, PlusIcon } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -140,7 +140,10 @@ const AddEmployeeSheet: React.FC<AddEmployeeSheetProps> = ({
         </div>
         <SheetFooter>
           <SheetClose asChild>
-            <Button onClick={handleAddEmployee}>Salvar</Button>
+            <Button onClick={handleAddEmployee}>
+              Salvar
+              <CheckIcon />
+            </Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>

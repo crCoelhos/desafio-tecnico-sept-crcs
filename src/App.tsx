@@ -9,6 +9,8 @@ import { Toaster } from "./components/ui/toaster";
 import { DeliveryProvider } from "./context/DeliveryContext";
 import ArchivedServices from "./pages/ArchivedServices";
 
+// #TODO: confirmation popup on archiving and canceling services
+
 function App() {
   return (
     <DeliveryProvider>
