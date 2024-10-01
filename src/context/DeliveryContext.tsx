@@ -1,4 +1,11 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
+import axios from "axios";
 import { Service } from "@/types/service";
 import { Employee } from "@/types/employee";
 
@@ -26,6 +33,31 @@ export const useDeliveryContext = () => {
 export const DeliveryProvider = ({ children }: { children: ReactNode }) => {
   const [globalServices, setGlobalServices] = useState<Service[]>([]);
   const [globalEmployees, setGlobalEmployees] = useState<Employee[]>([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/services");
+        setGlobalServices(response.data as Service[]);
+        console.log("Serviços carregados:", response.data);
+      } catch (error) {
+        console.error("Erro ao carregar serviços:", error);
+      }
+    };
+
+    const fetchEmployees = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/employees");
+        setGlobalEmployees(response.data as Employee[]);
+        console.log("Funcionários carregados:", response.data);
+      } catch (error) {
+        console.error("Erro ao carregar funcionários:", error);
+      }
+    };
+
+    fetchServices();
+    fetchEmployees();
+  }, []);
 
   return (
     <DeliveryContext.Provider

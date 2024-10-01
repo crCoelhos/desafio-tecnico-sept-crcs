@@ -1,0 +1,109 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.finishedCard {
+    background-color: #0d9c44;
+    color: white;
+
+    &:hover {
+        background: #078337;
+        transition: 200ms ease-in-out;
+        cursor: pointer;
+    }
+}
+
+.canceledCard {
+    background-color: #c1121f;
+    color: white;
+
+    &:hover {
+        background: #780000;
+        transition: 200ms ease-in-out;
+        cursor: pointer;
+    }
+
+
+    .finishDeliveryButton {
+        background-color: white;
+        color: #780000;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background: #c1121f;
+            color: white;
+            transition: 200ms ease-in-out;
+        }
+    }
+
+}
+
+.cardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.finishDeliveryButton {
+    background-color: white;
+    color: #0d9c44;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background: #065826;
+        color: white;
+        transition: 200ms ease-in-out;
+    }
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hoverCardContent {
+    border: solid 2px #0d9c44;
+
+    min-width: 320px;
+
+    font-weight: lighter;
+
+    h2 {
+        font-weight: bold;
+        text-align: center;
+        margin: 0 0 4px 0;
+    }
+
+    &last-child {
+        font-weight: bolder;
+    }
+}
+
+.hoverCardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hoverCardFooterFeeedbackButton {
+    font-weight: bolder;
+
+}

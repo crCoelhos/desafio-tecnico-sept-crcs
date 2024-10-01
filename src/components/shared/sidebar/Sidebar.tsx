@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./Sidebar.scss";
-import { ArrowLeftToLine, ArrowRightToLine } from "lucide-react";
+import {
+  ArchiveIcon,
+  ArrowLeftToLine,
+  ArrowRightToLine,
+  HomeIcon,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,16 +26,20 @@ const Sidebar = () => {
       </button>
       <ul className="sidebar-menu">
         <li className="sidebar-item">
-          <span className="sidebar-item-content">Option</span>{" "}
-          <span className="badge">1</span>
+          <Link to={"/"} className="sidebarLink">
+            <span className="sidebar-item-content">Home</span>
+            <span className="badge">
+              <HomeIcon></HomeIcon>
+            </span>
+          </Link>
         </li>
         <li className="sidebar-item">
-          <span className="sidebar-item-content">Option</span>{" "}
-          <span className="badge">2</span>
-        </li>
-        <li className="sidebar-item">
-          <span className="sidebar-item-content">Option</span>
-          <span className="badge">3</span>
+          <Link to={"/archived-services"} className="sidebarLink">
+            <span className="sidebar-item-content">OS Arquivada</span>{" "}
+            <span className="badge">
+              <ArchiveIcon></ArchiveIcon>
+            </span>
+          </Link>
         </li>
       </ul>
     </div>

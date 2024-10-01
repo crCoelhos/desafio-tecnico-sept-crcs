@@ -33,18 +33,22 @@ body {
   }
 }
 
-// .cardContentController {
-//   visibility: hidden;
-//   height: 1vh;
-//   width: 1vw;
-//   overflow: hidden;
-// }
+.mainContainer {
+  display: flex;
+  height: 100vh;
+}
 
-// .cardMainHeader {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  height: 100vh;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
 
 
 

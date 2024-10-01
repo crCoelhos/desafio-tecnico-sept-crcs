@@ -75,3 +75,21 @@
     color: #000000;
     border: 1px solid #000000;
 }
+
+
+.sidebarLink {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+
+    &:hover {
+        color: white;
+        text-decoration: none;
+    }
+}

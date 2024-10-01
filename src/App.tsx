@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import EmployeeCard from "./components/employee-card/EmployeeCard";
 import FinishedDeliveryCard from "./components/finished-delivery-card/FinishedDeliveryCard";
@@ -7,23 +7,33 @@ import ServiceCard from "./components/service-card/ServiceCard";
 import Sidebar from "./components/shared/sidebar/Sidebar";
 import { Toaster } from "./components/ui/toaster";
 import { DeliveryProvider } from "./context/DeliveryContext";
+import ArchivedServices from "./pages/ArchivedServices";
 
 function App() {
   return (
     <DeliveryProvider>
-      <main className="main">
-        <div>
+      <Router>
+        <div className="mainContainer">
           <Sidebar />
+          <main className="mainContent">
+            <Toaster />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <div className="cards-container">
+                    <OngoingDeliveryCard />
+                    <ServiceCard />
+                    <EmployeeCard />
+                    <FinishedDeliveryCard />
+                  </div>
+                }
+              />
+              <Route path="/archived-services" element={<ArchivedServices />} />
+            </Routes>
+          </main>
         </div>
-
-        <Toaster />
-        <div className="cards-container">
-          <OngoingDeliveryCard />
-          <ServiceCard />
-          <EmployeeCard />
-          <FinishedDeliveryCard />
-        </div>
-      </main>
+      </Router>
     </DeliveryProvider>
   );
 }
